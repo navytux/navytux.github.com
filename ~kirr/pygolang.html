@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.17.1b2.dev: http://docutils.sourceforge.net/" />
+<title>Pygolang - Go-like features for Python and Cython</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id$
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="pygolang-go-like-features-for-python-and-cython">
+<h1 class="title">Pygolang - Go-like features for Python and Cython</h1>
+
+<div class="sidebar">
+<p class="first sidebar-title">Links</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://pygolang.nexedi.com/pygolang-FAQ">FAQ</a></li>
+<li>Tutorials</li>
+<li><a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang">Source code</a></li>
+<li><a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/blob/master/CHANGELOG.rst">Release history</a></li>
+<li><a class="reference external" href="https://www.erp5.com/blog?subject=pygolang">News</a></li>
+</ul>
+</div>
+<p>Package <cite>golang</cite> provides Go-like features for Python:</p>
+<ul class="simple">
+<li><cite>gpython</cite> is Python interpreter with support for lightweight threads.</li>
+<li><cite>go</cite> spawns lightweight thread.</li>
+<li><cite>chan</cite> and <cite>select</cite> provide channels with Go semantic.</li>
+<li><cite>func</cite> allows to define methods separate from class.</li>
+<li><cite>defer</cite> allows to schedule a cleanup from the main control flow.</li>
+<li><cite>error</cite> and package <cite>errors</cite> provide error chaining.</li>
+<li><cite>b</cite> and <cite>u</cite> provide way to make sure an object is either bytes or unicode.</li>
+<li><cite>gimport</cite> allows to import python modules by full path in a Go workspace.</li>
+</ul>
+<p>Package <cite>golang.pyx</cite> <a class="reference internal" href="#cython-nogil-api">provides</a> similar features for Cython/nogil.</p>
+<p>Additional packages and utilities are also <a class="reference internal" href="#additional-packages-and-utilities">provided</a> to close other gaps
+between Python/Cython and Go environments.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#gpython" id="id26">GPython</a></li>
+<li><a class="reference internal" href="#goroutines-and-channels" id="id27">Goroutines and channels</a></li>
+<li><a class="reference internal" href="#methods" id="id28">Methods</a></li>
+<li><a class="reference internal" href="#defer-recover-panic" id="id29">Defer / recover / panic</a></li>
+<li><a class="reference internal" href="#errors" id="id30">Errors</a></li>
+<li><a class="reference internal" href="#strings" id="id31">Strings</a></li>
+<li><a class="reference internal" href="#import" id="id32">Import</a></li>
+<li><a class="reference internal" href="#cython-nogil-api" id="id33">Cython/nogil API</a></li>
+<li><a class="reference internal" href="#additional-packages-and-utilities" id="id34">Additional packages and utilities</a></li>
+<li><a class="reference internal" href="#gpython-options" id="id35">GPython options</a></li>
+</ul>
+</div>
+<div class="section" id="gpython">
+<h1><a class="toc-backref" href="#id26">GPython</a></h1>
+<p>Command <cite>gpython</cite> provides Python interpreter that supports lightweight threads
+via tight integration with <a class="reference external" href="http://www.gevent.org/">gevent</a>. The standard library of GPython is API
+compatible with Python standard library, but inplace of OS threads lightweight
+coroutines are provided, and IO is internally organized via
+<a class="reference external" href="http://libuv.org/">libuv</a>/<a class="reference external" href="http://software.schmorp.de/pkg/libev.html">libev</a>-based IO scheduler. Consequently programs can spawn lots of
+coroutines cheaply, and modules like <cite>time</cite>, <cite>socket</cite>, <cite>ssl</cite>, <cite>subprocess</cite> etc -
+all could be used from all coroutines simultaneously, and in the same blocking way
+as if every coroutine was a full OS thread. This gives ability to scale programs
+without changing concurrency model and existing code.</p>
+<p>Additionally GPython sets UTF-8 to be default encoding always, and puts <cite>go</cite>,
+<cite>chan</cite>, <cite>select</cite> etc into builtin namespace.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">GPython is optional and the rest of Pygolang can be used from under standard Python too.
+However without gevent integration <cite>go</cite> spawns full - not lightweight - OS thread.
+GPython can be also used with threads - not gevent - runtime. Please see
+<a class="reference internal" href="#gpython-options">GPython options</a> for details.</p>
+</div>
+</div>
+<div class="section" id="goroutines-and-channels">
+<h1><a class="toc-backref" href="#id27">Goroutines and channels</a></h1>
+<p><cite>go</cite> spawns a coroutine, or thread if gevent was not activated. It is possible to
+exchange data in between either threads or coroutines via channels. <cite>chan</cite>
+creates a new channel with Go semantic - either synchronous or buffered. Use
+<cite>chan.recv</cite>, <cite>chan.send</cite> and <cite>chan.close</cite> for communication. <cite>nilchan</cite>
+stands for nil channel. <cite>select</cite> can be used to multiplex on several
+channels. For example:</p>
+<pre class="literal-block">
+ch1 = chan()    # synchronous channel
+ch2 = chan(3)   # channel with buffer of size 3
+
+def _():
+    ch1.send('a')
+    ch2.send('b')
+go(_)
+
+ch1.recv()      # will give 'a'
+ch2.recv_()     # will give ('b', True)
+
+ch2 = nilchan   # rebind ch2 to nil channel
+_, _rx = select(
+    ch1.recv,           # 0
+    ch1.recv_,          # 1
+    (ch1.send, obj),    # 2
+    ch2.recv,           # 3
+    default,            # 4
+)
+if _ == 0:
+    # _rx is what was received from ch1
+    ...
+if _ == 1:
+    # _rx is (rx, ok) of what was received from ch1
+    ...
+if _ == 2:
+    # we know obj was sent to ch1
+    ...
+if _ == 3:
+    # this case will be never selected because
+    # send/recv on nil channel block forever.
+    ...
+if _ == 4:
+    # default case
+    ...
+</pre>
+<p>By default <cite>chan</cite> creates new channel that can carry arbitrary Python objects.
+However type of channel elements can be specified via <cite>chan(dtype=X)</cite> - for
+example <cite>chan(dtype='C.int')</cite> creates new channel whose elements are C
+integers. <cite>chan.nil(X)</cite> creates typed nil channel. <a class="reference internal" href="#cython-nogil-api">Cython/nogil API</a>
+explains how channels with non-Python dtypes, besides in-Python usage, can be
+additionally used for interaction in between Python and nogil worlds.</p>
+</div>
+<div class="section" id="methods">
+<h1><a class="toc-backref" href="#id28">Methods</a></h1>
+<p><cite>func</cite> decorator allows to define methods separate from class.</p>
+<p>For example:</p>
+<pre class="literal-block">
+&#64;func(MyClass)
+def my_method(self, ...):
+    ...
+</pre>
+<p>will define <cite>MyClass.my_method()</cite>.</p>
+<p><cite>func</cite> can be also used on just functions, for example:</p>
+<pre class="literal-block">
+&#64;func
+def my_function(...):
+    ...
+</pre>
+</div>
+<div class="section" id="defer-recover-panic">
+<h1><a class="toc-backref" href="#id29">Defer / recover / panic</a></h1>
+<p><cite>defer</cite> allows to schedule a cleanup to be executed when current function
+returns. It is similar to <cite>try</cite>/<cite>finally</cite> but does not force the cleanup part
+to be far away in the end. For example:</p>
+<pre class="literal-block">
+wc = wcfs.join(zurl)    │     wc = wcfs.join(zurl)
+defer(wc.close)         │     try:
+                        │        ...
+...                     │        ...
+...                     │        ...
+...                     │     finally:
+                        │        wc.close()
+</pre>
+<p>If deferred cleanup fails, previously unhandled exception, if any, won't be
+lost - it will be chained with (<a class="reference external" href="https://www.python.org/dev/peps/pep-3134/">PEP 3134</a>) and included into traceback dump
+even on Python2.</p>
+<p>For completeness there is <cite>recover</cite> and <cite>panic</cite> that allow to program with
+Go-style error handling, for example:</p>
+<pre class="literal-block">
+def _():
+   r = recover()
+   if r is not None:
+      print(&quot;recovered. error was: %s&quot; % (r,))
+defer(_)
+
+...
+
+panic(&quot;aaa&quot;)
+</pre>
+<p>But <cite>recover</cite> and <cite>panic</cite> are probably of less utility since they can be
+practically natively modelled with <cite>try</cite>/<cite>except</cite>.</p>
+<p>If <cite>defer</cite> is used, the function that uses it must be wrapped with <cite>&#64;func</cite>
+decorator.</p>
+</div>
+<div class="section" id="errors">
+<h1><a class="toc-backref" href="#id30">Errors</a></h1>
+<p>In concurrent systems operational stack generally differs from execution code
+flow, which makes code stack traces significantly less useful to understand an
+error. Pygolang provides support for error chaining that gives ability to build
+operational error stack and to inspect resulting errors:</p>
+<p><cite>error</cite> is error type that can be used by itself or subclassed. By
+providing <cite>.Unwrap()</cite> method, an error can optionally wrap another error this
+way forming an error chain. <cite>errors.Is</cite> reports whether an item in error chain
+matches target. <cite>fmt.Errorf</cite> provides handy way to build wrapping errors.
+For example:</p>
+<pre class="literal-block">
+e1 = error(&quot;problem&quot;)
+e2 = fmt.Errorf(&quot;doing something for %s: %w&quot;, &quot;joe&quot;, e1)
+print(e2)         # prints &quot;doing something for joe: problem&quot;
+errors.Is(e2, e1) # gives True
+
+# OpError is example class to represents an error of operation op(path).
+class OpError(error):
+   def __init__(e, op, path, err):
+      e.op   = op
+      e.path = path
+      e.err  = err
+
+   # .Error() should be used to define what error's string is.
+   # it is automatically used by error to also provide both .__str__ and .__repr__.
+   def Error(e):
+      return &quot;%s %s: %s&quot; % (e.op, e.path, e.err)
+
+   # provided .Unwrap() indicates that this error is chained.
+   def Unwrap(e):
+      return e.err
+
+mye = OpError(&quot;read&quot;, &quot;file.txt&quot;, io.ErrUnexpectedEOF)
+print(mye)                          # prints &quot;read file.txt: unexpected EOF&quot;
+errors.Is(mye, io.EOF)              # gives False
+errors.Is(mye. io.ErrUnexpectedEOF) # gives True
+</pre>
+<p>Both wrapped and wrapping error can be of arbitrary Python type - not
+necessarily of <cite>error</cite> or its subclass.</p>
+<p><cite>error</cite> is also used to represent at Python level an error returned by
+Cython/nogil call (see <a class="reference internal" href="#cython-nogil-api">Cython/nogil API</a>) and preserves Cython/nogil error
+chain for inspection at Python level.</p>
+<p>Pygolang error chaining integrates with Python error chaining and takes
+<cite>.__cause__</cite> attribute into account for exception created via <cite>raise X from Y</cite>
+(<a class="reference external" href="https://www.python.org/dev/peps/pep-3134/">PEP 3134</a>).</p>
+</div>
+<div class="section" id="strings">
+<h1><a class="toc-backref" href="#id31">Strings</a></h1>
+<p><cite>b</cite> and <cite>u</cite> provide way to make sure an object is either bytes or unicode.
+<cite>b(obj)</cite> converts str/unicode/bytes obj to UTF-8 encoded bytestring, while
+<cite>u(obj)</cite> converts str/unicode/bytes obj to unicode string. For example:</p>
+<pre class="literal-block">
+b(&quot;привет мир&quot;)   # -&gt; gives bytes corresponding to UTF-8 encoding of &quot;привет мир&quot;.
+
+def f(s):
+   s = u(s)       # make sure s is unicode, decoding as UTF-8(*) if it was bytes.
+   ...            # (*) but see below about lack of decode errors.
+</pre>
+<p>The conversion in both encoding and decoding never fails and never looses
+information: <cite>b(u(·))</cite> and <cite>u(b(·))</cite> are always identity for bytes and unicode
+correspondingly, even if bytes input is not valid UTF-8.</p>
+</div>
+<div class="section" id="import">
+<h1><a class="toc-backref" href="#id32">Import</a></h1>
+<p><cite>gimport</cite> provides way to import python modules by full path in a Go workspace.</p>
+<p>For example</p>
+<pre class="literal-block">
+lonet = gimport('lab.nexedi.com/kirr/go123/xnet/lonet')
+</pre>
+<p>will import either</p>
+<ul class="simple">
+<li><cite>lab.nexedi.com/kirr/go123/xnet/lonet.py</cite>, or</li>
+<li><cite>lab.nexedi.com/kirr/go123/xnet/lonet/__init__.py</cite></li>
+</ul>
+<p>located in <cite>src/</cite> under <cite>$GOPATH</cite>.</p>
+</div>
+<div class="section" id="cython-nogil-api">
+<h1><a class="toc-backref" href="#id33">Cython/nogil API</a></h1>
+<p>Cython package <cite>golang</cite> provides <em>nogil</em> API with goroutines, channels and
+other features that mirror corresponding Python package. Cython API is not only
+faster compared to Python version, but also, due to <em>nogil</em> property, allows to
+build concurrent systems without limitations imposed by Python's GIL. All that
+while still programming in Python-like language. Brief description of
+Cython/nogil API follows:</p>
+<p><cite>go</cite> spawns new task - a coroutine, or thread, depending on activated runtime.
+<cite>chan[T]</cite> represents a channel with Go semantic and elements of type <cite>T</cite>.
+Use <cite>makechan[T]</cite> to create new channel, and <cite>chan[T].recv</cite>, <cite>chan[T].send</cite>,
+<cite>chan[T].close</cite> for communication. <cite>nil</cite> stands for nil channel. <cite>select</cite>
+can be used to multiplex on several channels. For example:</p>
+<pre class="literal-block">
+cdef nogil:
+   struct Point:
+      int x
+      int y
+
+   void worker(chan[int] chi, chan[Point] chp):
+      chi.send(1)
+
+      cdef Point p
+      p.x = 3
+      p.y = 4
+      chp.send(p)
+
+   void myfunc():
+      cdef chan[int]   chi = makechan[int]()       # synchronous channel of integers
+      cdef chan[Point] chp = makechan[Point](3)    # channel with buffer of size 3 and Point elements
+
+      go(worker, chi, chp)
+
+      i = chi.recv()    # will give 1
+      p = chp.recv()    # will give Point(3,4)
+
+      chp = nil         # rebind chp to nil channel
+      cdef cbool ok
+      cdef int j = 33
+      _ = select([
+          chi.recvs(&amp;i),         # 0
+          chi.recvs(&amp;i, &amp;ok),    # 1
+          chi.sends(&amp;j),         # 2
+          chp.recvs(&amp;p),         # 3
+          default,               # 4
+      ])
+      if _ == 0:
+          # i is what was received from chi
+          ...
+      if _ == 1:
+          # (i, ok) is what was received from chi
+          ...
+      if _ == 2:
+          # we know j was sent to chi
+          ...
+      if _ == 3:
+          # this case will be never selected because
+          # send/recv on nil channel block forever.
+          ...
+      if _ == 4:
+          # default case
+          ...
+</pre>
+<p>Python channels are represented by <cite>pychan</cite> cdef class. Python
+channels that carry non-Python elements (<cite>pychan.dtype != DTYPE_PYOBJECT</cite>) can
+be converted to Cython/nogil <cite>chan[T]</cite> via <cite>pychan.chan_*()</cite>.
+Similarly Cython/nogil <cite>chan[T]</cite> can be wrapped into <cite>pychan</cite> via
+<cite>pychan.from_chan_*()</cite>. This provides interaction mechanism
+in between <em>nogil</em> and Python worlds. For example:</p>
+<pre class="literal-block">
+def myfunc(pychan pych):
+   if pych.dtype != DTYPE_INT:
+      raise TypeError(&quot;expected chan[int]&quot;)
+
+   cdef chan[int] ch = pych.chan_int()  # pychan -&gt; chan[int]
+   with nogil:
+      # use ch in nogil code. Both Python and nogil parts can
+      # send/receive on the channel simultaneously.
+      ...
+
+def mytick(): # -&gt; pychan
+   cdef chan[int] ch
+   with nogil:
+      # create a channel that is connected to some nogil task of the program
+      ch = ...
+
+   # wrap the channel into pychan. Both Python and nogil parts can
+   # send/receive on the channel simultaneously.
+   cdef pychan pych = pychan.from_chan_int(ch)  # pychan &lt;- chan[int]
+   return pych
+</pre>
+<p><cite>error</cite> is the interface that represents errors. <cite>errors.New</cite> and <cite>fmt.errorf</cite>
+provide way to build errors from text. An error can optionally wrap another
+error by implementing <cite>errorWrapper</cite> interface and providing <cite>.Unwrap()</cite> method.
+<cite>errors.Is</cite> reports whether an item in error chain matches target. <cite>fmt.errorf</cite>
+with <cite>%w</cite> specifier provide handy way to build wrapping errors. For example:</p>
+<pre class="literal-block">
+e1 = errors.New(&quot;problem&quot;)
+e2 = fmt.errorf(&quot;doing something for %s: %w&quot;, &quot;joe&quot;, e1)
+e2.Error()        # gives &quot;doing something for joe: problem&quot;
+errors.Is(e2, e1) # gives True
+</pre>
+<p>An <cite>error</cite> can be exposed to Python via <cite>pyerror</cite> cdef class wrapper
+instantiated by <cite>pyerror.from_error()</cite>. <cite>pyerror</cite> preserves Cython/nogil error
+chain for inspection by Python-level <cite>error.Is</cite>.</p>
+<p><cite>panic</cite> stops normal execution of current goroutine by throwing a C-level
+exception. On Python/C boundaries C-level exceptions have to be converted to
+Python-level exceptions with <cite>topyexc</cite>. For example:</p>
+<pre class="literal-block">
+cdef void _do_something() nogil:
+   ...
+   panic(&quot;bug&quot;)   # hit a bug
+
+# do_something is called by Python code - it is thus on Python/C boundary
+cdef void do_something() nogil except +topyexc:
+   _do_something()
+
+def pydo_something():
+   with nogil:
+      do_something()
+</pre>
+<p>See <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/libgolang.h"><cite>libgolang.h</cite></a> and <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/_golang.pxd"><cite>golang.pxd</cite></a> for details of the API.
+See also <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/pyx/testprog/golang_pyx_user"><cite>testprog/golang_pyx_user/</cite></a> for demo project that uses Pygolang in
+Cython/nogil mode.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="additional-packages-and-utilities">
+<h1><a class="toc-backref" href="#id34">Additional packages and utilities</a></h1>
+<p>The following additional packages and utilities are also provided to close gaps
+between Python/Cython and Go environments:</p>
+<div class="contents local topic" id="id12">
+<ul class="simple">
+<li><a class="reference internal" href="#concurrency" id="id36">Concurrency</a></li>
+<li><a class="reference internal" href="#string-conversion" id="id37">String conversion</a></li>
+<li><a class="reference internal" href="#benchmarking-and-testing" id="id38">Benchmarking and testing</a></li>
+</ul>
+</div>
+<div class="section" id="concurrency">
+<h2><a class="toc-backref" href="#id36">Concurrency</a></h2>
+<p>In addition to <cite>go</cite> and channels, the following packages are provided to help
+handle concurrency in structured ways:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/context.h"><cite>golang.context</cite></a> (<a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/context.py">py</a>, <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/_context.pxd">pyx</a>) provides contexts to propagate deadlines, cancellation and
+task-scoped values among spawned goroutines <a class="footnote-reference" href="#id20" id="id13">[*]</a>.</li>
+<li><a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/sync.h"><cite>golang.sync</cite></a> (<a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/sync.py">py</a>, <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/_sync.pxd">pyx</a>) provides <cite>sync.WorkGroup</cite> to spawn group of goroutines working
+on a common task. It also provides low-level primitives - for example
+<cite>sync.Once</cite>, <cite>sync.WaitGroup</cite>, <cite>sync.Mutex</cite> and <cite>sync.RWMutex</cite> - that are
+sometimes useful too.</li>
+<li><a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/time.h"><cite>golang.time</cite></a> (<a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/time.py">py</a>, <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/_time.pxd">pyx</a>) provides timers integrated with channels.</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id13">[*]</a></td><td>See <a class="reference external" href="https://blog.golang.org/context">Go Concurrency Patterns: Context</a> for overview.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="string-conversion">
+<h2><a class="toc-backref" href="#id37">String conversion</a></h2>
+<p><cite>qq</cite> (import from <cite>golang.gcompat</cite>) provides <cite>%q</cite> functionality that quotes as
+Go would do. For example the following code will print name quoted in <cite>&quot;</cite>
+without escaping printable UTF-8 characters:</p>
+<pre class="literal-block">
+print('hello %s' % qq(name))
+</pre>
+<p><cite>qq</cite> accepts both <cite>str</cite> and <cite>bytes</cite> (<cite>unicode</cite> and <cite>str</cite> on Python2)
+and also any other type that can be converted to <cite>str</cite>.</p>
+<p>Package <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/strconv.py"><cite>golang.strconv</cite></a> provides direct access to conversion routines, for
+example <cite>strconv.quote</cite> and <cite>strconv.unquote</cite>.</p>
+</div>
+<div class="section" id="benchmarking-and-testing">
+<h2><a class="toc-backref" href="#id38">Benchmarking and testing</a></h2>
+<p><cite>py.bench</cite> allows to benchmark python code similarly to <cite>go test -bench</cite> and <cite>py.test</cite>.
+For example, running <cite>py.bench</cite> on the following code:</p>
+<pre class="literal-block">
+def bench_add(b):
+    x, y = 1, 2
+    for i in xrange(b.N):
+        x + y
+</pre>
+<p>gives something like:</p>
+<pre class="literal-block">
+$ py.bench --count=3 x.py
+...
+pymod: bench_add.py
+Benchmarkadd    50000000        0.020 µs/op
+Benchmarkadd    50000000        0.020 µs/op
+Benchmarkadd    50000000        0.020 µs/op
+</pre>
+<p>Package <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/testing.py"><cite>golang.testing</cite></a> provides corresponding runtime bits, e.g. <cite>testing.B</cite>.</p>
+<p><cite>py.bench</cite> produces output in <a class="reference external" href="https://github.com/golang/proposal/blob/master/design/14313-benchmark-format.md">Go benchmark format</a>, and so benchmark results
+can be analyzed and compared with standard Go tools, for example with
+<a class="reference external" href="https://godoc.org/golang.org/x/perf/cmd/benchstat">benchstat</a>.
+Additionally package <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/tree/master/golang/x/perf/benchlib.py"><cite>golang.x.perf.benchlib</cite></a> can be used to load and process
+such benchmarking data in Python.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="gpython-options">
+<h1><a class="toc-backref" href="#id35">GPython options</a></h1>
+<p>GPython mimics and supports most of Python command-line options, like <cite>gpython
+-c &lt;commands&gt;</cite> to run Python statements from command line, or <cite>gpython -m
+&lt;module&gt;</cite> to execute a module. Such options have the same meaning as in
+standard Python and are not documented here.</p>
+<p>GPython-specific options and environment variables are listed below:</p>
+<dl class="docutils">
+<dt><cite>-X gpython.runtime=(gevent|threads)</cite></dt>
+<dd>Specify which runtime GPython should use. <cite>gevent</cite> provides lightweight
+coroutines, while with <cite>threads</cite> <cite>go</cite> spawns full OS thread. <cite>gevent</cite> is
+default. The runtime to use can be also specified via <cite>$GPYTHON_RUNTIME</cite>
+environment variable.</dd>
+</dl>
+<hr class="docutils" />
+<p>Pygolang is Free Software, licensed under <a class="reference external" href="https://lab.nexedi.com/nexedi/pygolang/blob/master/COPYING">GPLv3+ with wide exception for Free
+and Open-Source software</a>. Please see <a class="reference external" href="https://www.nexedi.com/licensing">Nexedi licensing</a> for rationale and
+options.</p>
+</div>
+</div>
+</body>
+</html>

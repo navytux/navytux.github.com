@@ -1,0 +1,26 @@
+Package: nxd-fuse
+Format: 3.0 (native)
+Binary: nxd-fuse-dkms
+Architecture: all
+Version: 4.9.nxd3+debian2
+Maintainer: Kirill Smelkov <kirr@nexedi.com>
+Standards-Version: 4.3.0
+Build-Depends: debhelper, dkms
+Homepage: https://pypi.org/project/wendelin.core
+Vcs-Browser: https://lab.nexedi.com/kirr/linux
+Vcs-Git: https://lab.nexedi.com/kirr/linux.git
+Package-List:
+ nxd-fuse-dkms deb kernel optional arch=all
+Files:
+ 7ab2e96507dd585603c82ca17bd0a8da 1614 nxd-fuse_4.9.nxd3+debian2.dsc
+ ab4bc900cf099eb4362c2e3a6158a209 57756 nxd-fuse_4.9.nxd3+debian2.tar.xz
+Checksums-Sha1:
+ d4c244c99096d5df88188f19152ac369c97aedd6 1614 nxd-fuse_4.9.nxd3+debian2.dsc
+ 027b9d2d5fd11ae23d188fb62fdf7ee4ad924280 57756 nxd-fuse_4.9.nxd3+debian2.tar.xz
+Checksums-Sha256:
+ 24f4d2570dafe69c0607a688251dd076a1c108aff3d1c7f8b0cc277f23d7eabe 1614 nxd-fuse_4.9.nxd3+debian2.dsc
+ 9ec8cea3b47a73fc903217f975417b0b85544ee8213a810e85ad831231db7493 57756 nxd-fuse_4.9.nxd3+debian2.tar.xz
+Checksums-Sha512:
+ baa6a4f8f5088fcdbd1eaec9d72dac7a54a0aabddad4b1cbd19332c2d0233b8229df05eb34a038715968ecc551c4cc3520bd31f22aac5fc5cc9a71ab38fbac80 1614 nxd-fuse_4.9.nxd3+debian2.dsc
+ 6ba551c5c77b3ece66889795634bc65212e94fa53cd0b19f2876978d4a8c5a7dd280d9b21ffbcbc30ef70781df0155f4c90990cd7fe73b8d170cc327ed602044 57756 nxd-fuse_4.9.nxd3+debian2.tar.xz
+

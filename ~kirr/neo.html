@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<title>Update on my NEO/go work</title>
+<meta name="author" content="Kirill Smelkov" />
+<meta name="date" content="20 Mar 2018" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="update-on-my-neo-go-work">
+<h1 class="title">Update on my NEO/go work</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Kirill Smelkov</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>20 Mar 2018</td></tr>
+</tbody>
+</table>
+<p>tl;dr A draft proof-of-concept read-only NEO storage was implemented in Go. The storage
+speaks NEO protocol on the wire and is thus network-compatible with current NEO/py
+implementation<a class="footnote-reference" href="#netcompat" id="footnote-reference-1"><sup>1</sup></a>. FileStorage or SQLite database can be used as data backend
+which makes it disk-compatible with ZEO/py and NEO/py/sqlite.
+Benchmarks comparing ZEO/py, NEO/py/{sqlite,sql} and NEO/go/{fs1,sqlite}
+were performed on wendelin.core-like and regular ERP5-like datasets.
+They show that, compared to NEO/py, NEO/go storage works ~ 2x-4.5x faster for
+single-client serial workloads, and on systems with enough processors works ~
+10x-30x faster for 16-clients parallel
+workload, thus providing better scaling of database service.</p>
+<p>Below is example picture that compares storages performance on our shuttle
+machine for the case when both client and server runs on the same host:</p>
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/rio-wczblk1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/rio-wczblk1.svg" style="width: 1152px; height: 1056px;" />
+<p>The implementation is very rough at many edges, but more or less works.</p>
+<p>The code is located at <a class="reference external" href="https://lab.nexedi.com/kirr/neo.git">https://lab.nexedi.com/kirr/neo.git</a>, branches <cite>y/go</cite>
+- for clean ready-to-go parts, and <cite>t</cite> - for still draft stuff.</p>
+<table class="docutils footnote" frame="void" id="netcompat" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-1">[1]</a></td><td>small protocol changes are currently needed about how message
+ids are allocated.</td></tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#the-need-for-faster-storage" id="toc-entry-1">The need for faster storage</a></li>
+<li><a class="reference internal" href="#choice-of-go" id="toc-entry-2">Choice of Go</a></li>
+<li><a class="reference internal" href="#development-overview" id="toc-entry-3">Development overview</a></li>
+<li><a class="reference internal" href="#performance-tests" id="toc-entry-4">Performance tests</a><ul>
+<li><a class="reference internal" href="#measurements-stability" id="toc-entry-5">Measurements stability</a><ul>
+<li><a class="reference internal" href="#cpu-frequency-p-states" id="toc-entry-6">CPU frequency (P-states)</a></li>
+<li><a class="reference internal" href="#cpu-idle-c-states" id="toc-entry-7">CPU idle (C-states)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#results-and-discussion" id="toc-entry-8">Results and discussion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#current-problems" id="toc-entry-9">Current problems</a></li>
+<li><a class="reference internal" href="#resume" id="toc-entry-10">Resume</a></li>
+<li><a class="reference internal" href="#appendix-i-ssd-latency" id="toc-entry-11">Appendix I. SSD latency</a></li>
+<li><a class="reference internal" href="#appendix-ii-cpu-c-states" id="toc-entry-12">Appendix II. CPU C-states</a></li>
+<li><a class="reference internal" href="#appendix-iii-all-benchmarks" id="toc-entry-13">Appendix III. All benchmarks</a></li>
+</ul>
+</div>
+<div class="section" id="the-need-for-faster-storage">
+<h1><a class="toc-backref" href="#toc-entry-1">The need for faster storage</a></h1>
+<p>Before showing my work, let's first go on why faster ZODB storage is
+needed. The reason is: in the era when mechanical hard-drives were commonly
+used, their random access time was ~ 8 - 12 milliseconds. The time to handle
+read request for objects not already in server cache was thus dominated by IO
+time, as usually microsecond-range software processing time was negligible to that.
+With SSD however the picture is completely different: for SSD random 4K-read
+access latency is usually in the range of 100-200 microseconds, and so the time
+storage software frontend processing adds to that becomes important to keep low in
+order to be able to keep up providing SSD-based speed. For example if SSD read
+latency is 100µs and software-only latency of ZODB server frontend is 300µs, the
+latency to read objects not in disk cache will be 400µs, thus 4x slower
+compared to what SSD could natively provide. Please see <a class="reference internal" href="#appendix-i-ssd-latency">Appendix I. SSD
+latency</a> for details on SSD latency topic.</p>
+<p>Currently, even with fast Go client (<a class="reference internal" href="#results-and-discussion">Results and discussion</a> shows Python ZEO
+and NEO clients add significant latency on their own) both ZEO/py and NEO/py
+server request handling latency is in the order of several hundreds of µs, and
+so there is room for improvement here.</p>
+<p>Another area where storage improvement is needed is being able to serve many
+request in parallel. There are several reasons here:</p>
+<ul>
+<li><p class="first">modern SSD are often multi-queue - they can handle several IO requests in
+parallel to each other.</p>
+</li>
+<li><p class="first">in situation when client needs to load several objects, some of them could be
+already in disk cache on the server while some not. If objects are requested
+serially, it might be that loading objects that are already in the server cache will
+have to wait for objects that need actual disk IO to load first. If objects
+are loaded serially one by one, this effectively blocks requests that could be
+processed just from disk cache. Similarly if most objects are in server disk
+cache, loading them one-by-one just wastes time, as even if underlying SSD is
+not multiqueue, they still can be all read in parallel.</p>
+<p>The situation is not limited to only one client as several objects could be
+requested by many clients from the same storage at the same time and the same
+arguments apply: if storage handles requests serially, the more clients and
+simultaneous requests are there, the more the latency will be for one
+individual object to be read.</p>
+</li>
+</ul>
+<p>Currently both ZEO/py and NEO/py handle 1 request at a time only.</p>
+</div>
+<div class="section" id="choice-of-go">
+<h1><a class="toc-backref" href="#toc-entry-2">Choice of Go</a></h1>
+<p>To work on the improved storage, I choosed to use the Go language. My rationale was:</p>
+<ul>
+<li><p class="first">Go is similar to Python in many aspects.</p>
+</li>
+<li><p class="first">contrary to Python, Go provides lightweight threads called goroutines. The
+implementation of many concurrent and parallel algorithms is thus naturally
+expressed in terms of sequential processes that communicate over channels,
+instead of asynchronous callbacks and state-machines spaghetti.</p>
+<p>Internally many goroutines can be multiplexed by Go runtime on
+top of a single OS thread. The way multiplexing is done is similar to
+async/await for in-process communication (represented via channels in
+go) and by way of using epoll network puller for communications via
+network. But to user it all looks like that every goroutine is separate
+sequential process. It is possible to create lots of goroutines because
+they are much more lightweight compared to threads.</p>
+<p>In the end goroutines provide similar scalability to systems that are
+explicitly &quot;asynchronously&quot; programmed around epoll, but for a human it
+all looks like as if every goroutine executes sequentially and blocks on
+IO Send/Recv. Go runtime also manages pool of OS threads and schedules
+goroutines on them, so that whole processing can be using all CPUs
+available (and inter-goroutine communication via channels is always safe
+regardless of whether two G are running on the same OS thread or on two
+OS threads, potentially executing in parallel to each other).</p>
+</li>
+<li><p class="first">contrary to Python, Go is statically typed and compiled. Being compiled
+provides better serial performance compared to CPython who is bytecode
+interpreter internally. On the other hand the compilation time is usually
+tiny or small this way not loosing fast edit/try property. Being statically
+typed on one hand helps for being compiled, and on the other hand does not
+put much mental overhead on the programmer as type inference is widespread.
+Static types also drive people to work-out interfaces more well, which should
+be good for project structure, with Go providing good interfaces support at the
+language level.</p>
+</li>
+<li><p class="first">contrary to Python, Go has no GIL and leverages multicore by default.</p>
+</li>
+</ul>
+<p>Go is not ideal. However it looks to be a good fit for modern networked services.</p>
+</div>
+<div class="section" id="development-overview">
+<h1><a class="toc-backref" href="#toc-entry-3">Development overview</a></h1>
+<p>For development I choosed to initially implement simple case of a read-only
+single storage node that does not support NEO replication (so <cite>n(replica)</cite> = 1,
+<cite>n(partition)</cite> = 1), but that can work together with existing NEO/py master and NEO/py
+client on the wire in backward-compatible manner. The choise for being
+read-only initially is for simplicity and to get things started incrementally.
+No replication initially also helps to bootstrap because as e.g. protocols like
+<a class="reference external" href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Paxos</a> and <a class="reference external" href="https://raft.github.io/">Raft</a> show, reaching consensus in between several nodes on committed
+data can be tricky in various nodes or network failure scenarious and hard to
+get right. It thus requires proper protocol logic specification in order to
+be able to analyze it for correctness. Unfortunately, to my knowledge, we
+currently don't have that.</p>
+<p>The work on NEO/go started a bit from a side - by drafting ZODB/go first
+(<a href="https://lab.nexedi.com/kirr/neo/commit/20d8456c">1</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/3d13a276">2</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/bac6c953">3</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/dfd4fb73">4</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/fcab9405">5</a>).
+The reason here is that having Go ZODB client around
+helps development, because then there can be e.g. in-process unit tests, and also
+because ZODB/go client will be also needed for Go projects that need to work
+with data in ZODB.
+A note goes right away that by insisting on specifying ZODB/go interfaces right,
+a performance bug in current ZODB/py was <a class="reference external" href="https://lab.nexedi.com/kirr/neo/blob/6faed528/go/zodb/zodb.go#L231">discovered</a>:
+in ZODB/py <cite>loadBefore</cite>, in addition to <cite>serial</cite>, also returns
+<cite>serial_next</cite>, which constraints storage implementations unnecessarily
+and is used only in client cache.
+In ZODB/go <a href="https://lab.nexedi.com/kirr/neo/commit/7233b4c0">client cache</a> implementation shows that it is possible to build
+efficient client cache without <cite>serial_next</cite> returned from Load and for this
+reason in ZODB/go Load interface specification comes without specifying <cite>serial_next</cite>
+return. This in turn paves the way for how even NEO/py could be reworked to use
+2x less SQL queries for a load object request.</p>
+<p>Next, even though NEO/py uses SQLite or MariaDB backends only, keeping in
+mind current widespread usage of FileStorage in ZODB-based projects, a
+FileStorage/go was implemented (<a href="https://lab.nexedi.com/kirr/neo/commit/8f64f6ed">1</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/33d10066">2</a>,
+<a href="https://lab.nexedi.com/kirr/neo/commit/8fa9fdaf">3</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/d3bf6538">4</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/7792a133">5</a>). This gives us
+flexibility to test Go bits not only on SQL data, but also on existing
+<cite>data.fs</cite> databases, and actually one of NEO/go storage backend uses
+FileStorage for that. Additionally fs1/go comes also with several FileStorage
+related maintenance tools (<a href="https://lab.nexedi.com/kirr/neo/commit/db167e69">1</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/9de107fe">2</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/11ee44e0">3</a>), that together with unit-tests demonstrate that data is read
+bit-to-bit identical compared to python FileStorage implementation, and that might
+be also useful sometimes on the field.
+Closing ZODB/go client overview there is also port of zodbtools to Go (<a href="https://lab.nexedi.com/kirr/neo/commit/c6457cf7">1</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/dbb63f65">2</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/27d02ad5">3</a>, <a href="https://lab.nexedi.com/kirr/neo/commit/aa1d7e12">4</a>) for
+completeness.</p>
+<p>On server-side NEO/go work started by first implementing messages serialization
+in exactly the same wire format as NEO/py does. This was needed because NEO/py
+uses custom encoding format instead of something well-established, as e.g.
+protocol buffers, with cross-language support. NEO/py takes <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/neo/lib/protocol.py">runtime
+introspection</a> approach with messages classes defining their
+encodings in <cite>struct</cite> module format with then common encoder/decoder using them
+with the help of small python-based domain-specific language. NEO/go takes
+similar, though a bit different approach: messages are defined as <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/proto/proto.go">Go
+structures</a> with corresponding encoding and decoding
+routines <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/proto/protogen.go">generated</a> for them at build time.
+This works well in practice because in Go there is a good library support to
+<a class="reference external" href="https://golang.org/pkg/go/types/">parse and typecheck</a> Go sources, and this way it is relatively easy to build
+custom tools that either generate additional code based on main source, or
+analyze the program in some custom way, or whatever... For the reference the generated
+code for messages serialization on NEO/go side is <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/proto/zproto-marshal.go">this</a>.</p>
+<p>Then comes the link layer which provides service to exchange messages over
+network. In current NEO/py every message has <cite>msg_id</cite> field, that similarly to
+ZEO/py marks a request with serial number with requester then waiting for
+corresponding answer to come back with the same message id. Even though there
+might be several reply messages coming back to a single request, as e.g. NEO/py
+asynchronous replication code <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/neo/storage/replicator.py">shows</a>,
+this approach is still similar to ZEO/py remote procedure call (RPC) model
+because of single request semantic. One of the places where this
+limitation shows is the same replicator code where transactions metadata is
+fetched first with first series of RPC calls, and only then object data is
+fetched with the second series of RPC calls. This could be not very good e.g. in
+case when there is a lot of transactions/data to synchronize, because 1) it
+puts assumption on, and so constraints, the storage backend model on how data
+is stored (separate SQL tables for metadata and data), and 2) no data will be
+synchronized at all until all transactions are synchronized first. The second
+point prevents for example the syncing storage in turn to provide, even if read-only,
+service for the already fetched data. What would be maybe more useful is for
+requester to send request that it wants to fetch ZODB data in
+<cite>tid_min..tid_max</cite> range and then the sender sending intermixed stream of
+metadata/data in zodbdump-like format.</p>
+<p>Keeping in mind this, and other examples, NEO/go shifts from thinking about protocol logic as RPC to thinking of it as more general network protocol and settles to provide
+general connection-oriented <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/neonet/connection.go">message exchange service</a>: whenever a message with new <cite>msg_id</cite> is sent, a
+new connection is established multiplexed on top of a single node-node TCP link.
+Then it is possible to send/receive arbitrary messages over back and forth
+until so established connection is closed. This works transparently to NEO/py
+who still thinks it operates in simple RPC mode because of the way messages are
+put on the wire and because simple RPC is subset of a general exchange.
+The <cite>neonet</cite> module also provides <cite>DialLink</cite> and <cite>ListenLink</cite>
+<a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/neonet/newlink.go">primitives</a> that works similarly to
+standard Go <cite>net.Dial</cite> and <cite>net.Listen</cite> but wraps so created link into
+the multiplexing layer. What is actually done this way is very similar to
+HTTP/2 which also provides multiple general streams multiplexing on top of a
+single TCP connection (<a class="reference external" href="https://tools.ietf.org/html/rfc7540#section-5">1</a>, <a class="reference external" href="https://http2.github.io/faq/#why-is-http2-multiplexed">2</a>). However if connection ids (sent in place of
+<cite>msg_id</cite> on the wire) are assigned arbitrary, there could be a case when two
+nodes could try to initiate two new different connections to each other with the
+same connection id. To prevent such kind of conflict a simple rule to allocate
+connection ids either even or odd, depending on the role peer played while
+establishing the link, could be used. HTTP/2 <a class="reference external" href="https://tools.ietf.org/html/rfc7540#section-5.1.1">takes similar approach</a> where
+<cite>&quot;Streams initiated by a client MUST use odd-numbered stream identifiers; those
+initiated by the server MUST use even-numbered stream identifiers.&quot;</cite>
+with NEO/go doing the same corresponding to who was originally dialer and who
+was a listener. However it requires small  <a href="https://lab.nexedi.com/kirr/neo/commit/dd3bb8b4">patch</a> to be applied
+on NEO/py side to increment <cite>msg_id</cite> by 2 instead of 1.</p>
+<p>NEO/py currently explicitly specifies <cite>msg_id</cite> for an answer in only limited set of cases,
+by default assuming a reply comes to the last received message whose <cite>msg_id</cite>
+it remembers globally per TCP-link. This approach is error-prone and cannot
+generally work in cases where several simultaneous requests are received over
+single link. This way NEO/go does not maintain any such global per-link knowledge
+and handles every request by always explicitly using corresponding connection
+object created at request reception time.</p>
+<p>Then comes the main cluster logic with NEO/go <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/master.go">master</a>, <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/client.go">client</a> and <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/storage.go">storage</a> implementation. Like it was already said I needed NEO/go
+client to be there to help development by being able to use it in unit tests,
+with the same applying to NEO/go master as well. The NEO/go client will be also helpful
+for benchmarking (see below).
+Even though current NEO/go POC was targeting simple case of 1 storage node,
+there is preliminary support for <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/nodetab.go">Node Table</a> and
+<a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/parttab.go">Partition Table</a> which are tried to be updated
+from master messages in accordance to general NEO protocol.
+Please note that contrary to previous parts, the main neo server Go code is
+still very draft and dirty.</p>
+<p>For storage there is two backends: <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/storage/fs1/fs1.go">one</a> that uses
+FileStorage directly, and <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/storage/sqlite/sqlite.go">another</a>
+one that works with NEO/py SQLite data. The FileStorage backend is currently
+more well-tested and optimized with several performance fruits still being
+there not taken on the sqlite side.</p>
+<p>It should be good to note on how cluster logic is tested: in general cluster is
+concurrent system with multiple nodes that might be doing several things at the
+same time, so traditional approach of testing serial systems cannot be applied
+here easily. What I emerged with is the way to do it via synchronous tracing:
+first Go <a class="reference external" href="https://lab.nexedi.com/kirr/go123/blob/e488af62/tracing/tracing.go">tracing</a> package and corresponding <a class="reference external" href="https://lab.nexedi.com/kirr/go123/blob/e488af62/tracing/cmd/gotrace/gotrace.go">gotrace</a> tool are introduced that
+help do Linux-style trace-events in Go programs. Basically one can add
+special <cite>&quot;//trace:event traceMyEvent(...)&quot;</cite> comments into the sources and add
+<cite>traceMyEvent(...)</cite> calls at appropriate places. The calls will be no-op by
+default, but one can attach probes to trace events via tracing API with arbitrary Go
+code, and while such probes are run the original code execution is paused.
+This builds the foundation to collect events in synchronous way during
+execution of a system.</p>
+<p>On top of that package <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/xcommon/xtracing/tracetest/tracetest.go">tracetest</a> provides infrastructure for testing
+concurrent systems. Some excerpt from its documentation follows:</p>
+<blockquote>
+<p>A serial system can be verified by checking that its execution produces
+expected serial stream of events. But concurrent systems cannot be verified
+by exactly this way because events are only partly-ordered with respect to
+each other by causality or so called happens-before relation.</p>
+<p>However in a concurrent system one can decompose all events into serial
+streams in which events are strictly ordered by causality with respect to
+each other. This decomposition in turn allows to verify that in every stream
+events happenned as expected.</p>
+<p>Verification of events for all streams can be done by one <em>sequential</em>
+process:</p>
+<blockquote>
+<ul class="simple">
+<li>if events A and B in different streams are unrelated to each other by
+causality, the sequence of checks models a particular possible flow of
+time. Notably since events are delivered synchronously and sender is
+blocked until receiver/checker explicitly confirms event has been
+processed, by checking either A then B, or B then A allows to check
+for a particular race-condition.</li>
+<li>if events A and B in different streams are related to each other by
+causality (i.e. there is some happens-before relation for them) the
+sequence of checking should represent that ordering relation.</li>
+</ul>
+</blockquote>
+</blockquote>
+<p>The actual test code that uses this is currently all dirty and in flux, but
+<a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/cluster_test.go#L742">here</a> is one example how it is all used
+in practice for verifying two processes that are not ordered by causality with
+respect to each other:</p>
+<ol class="arabic simple">
+<li>client asks master for partition table.</li>
+<li>master notifies client with node table information.</li>
+</ol>
+<p>Last note learned while doing NEO/go is about prefetching objects: whenever
+there is non-small ListBox to show or RSS feed to generate on ERP5 side, there
+are many objects that need to be loaded from ZODB. If we load this objects
+from ZODB one by one, the performance will be low no matter how fast storage frontend
+is, because even if round-trip time is small, it will be multiplied by overall number
+of objects to load. What thus makes sense it to prefetch objects in advance in
+parallel to each other. Prefetching in turn is tightly related to client cache,
+because after prefetching you need to store data somewhere until it is needed.
+Let's consider the steps that are performed when an object is loaded regularly:</p>
+<ol class="arabic simple">
+<li>start loading object into cache,</li>
+<li>wait for the loading to complete.</li>
+</ol>
+<p>This way Prefetch is naturally only &quot;1&quot; - start loading object into
+cache but do not wait for the loading to be complete. Go's goroutines
+naturally help here where we can spawn every such loading into its own
+goroutine instead of explicitly programming loading in terms of a state
+machine, and this way ZODB/go <a href="https://lab.nexedi.com/kirr/neo/commit/7233b4c0">always provides</a>
+<a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/zodb/zodb.go#L175">working prefetch</a>.
+We don't have working prefetch implementation for Python clients, hopefully yet.</p>
+</div>
+<div class="section" id="performance-tests">
+<h1><a class="toc-backref" href="#toc-entry-4">Performance tests</a></h1>
+<p>We frequently run NEO or ZEO storages on the same machine as main ERP5
+service. But this is not always the case and, especially for big data projects, the
+performance when clients and server run on different hosts interconnected by
+network is interesting. This installment, however, covers only so-called
+localhost scenario - the case when both client and server are run on the same
+computer<a class="footnote-reference" href="#netbench" id="footnote-reference-2"><sup>2</sup></a>.</p>
+<p>The way performance is tested is by <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/t/neotest">neotest</a> driver
+via launching various storages and then running several test programs on them
+to see how fast it works:</p>
+<ul class="simple">
+<li><a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/t/tzodb.py">zhash.py</a>: this program computes hash of whole
+latest objects stream in a ZODB database with using Python storage client.</li>
+<li><a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/t/tzodb.go#L104">zhash.go</a>: this program computes hash of
+whole latest objects stream in a ZODB database with using Go storage client.</li>
+<li><a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/t/tzodb.go#L246">zwrk.go</a>: this program, similarly to HTTP
+<a class="reference external" href="https://github.com/wg/wrk">wrk</a>, benchmarks database under parallel load from multiple clients.
+During a benchmark it is run with several <cite>·n</cite> covering from 1 to 16 clients.</li>
+</ul>
+<p><cite>zwrk.go</cite> deserves a note: initially I was checking how storages perform
+under parallel load by way of running multiple <cite>zhash.py</cite> or <cite>zhash.go</cite>
+processes which put heavy weight on the OS and do
+not allow to simulate many clients as those processes are fighting with
+each other and with server process for CPU with context switches etc. As the
+result timings were not stable, noisy and not repeatable from run to run.
+<cite>Zwrk.go</cite> instead, similarly to <cite>wrk</cite>, simulates many clients from inside one
+process by leveraging Go support for goroutines. Side note is that due to ZEO
+performance being also interesting, simple ZEO/go client had to be
+<a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/zodb/storage/zeo/zeo.go">quickly</a> <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/zodb/storage/zeo/zrpc.go">made</a>.</p>
+<p>Two test datasets are used: <cite>wczblk1-8</cite> - the dataset with wendelin.core
+<cite>ZBlk1</cite> objects covering 8M array, and <cite>prod1-1024</cite> - synthethic
+<a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/neo/tests/stat_zodb.py#L9">dataset</a> that tries to represent regular
+ERP5 instance. Both datasets are very small and so we can assume they reside
+completely in server disk cache while running benchmarks. Benchmark timings
+will thus give pure storage software processing latency, as pagecache hit time
+is on par, or less, to 1µs.</p>
+<p>For NEO benchmarks, compression was disabled while generating the datasets.
+This is needed for fairness because NEO uses zlib compression, and e.g. for
+<cite>wczblk1-8</cite> it takes ~ 20µs to decompress data on client side after receiving
+it from server. Thus if compression is not disabled we'll be measuring server
+reply latency adjusted by zlib timings<a class="footnote-reference" href="#zlib" id="footnote-reference-3"><sup>3</sup></a>.</p>
+<p>To verify how various storages perform I used 4 systems:</p>
+<ul class="simple">
+<li>deco  (i7-6600U   &#64;2.60GHz from 2015 <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?&amp;id=2608">https://www.cpubenchmark.net/cpu.php?&amp;id=2608</a>) Fturbo ~ 3.4GHz</li>
+<li>rio   (i7-3770S   &#64;3.10GHz from 2012 <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?id=897">https://www.cpubenchmark.net/cpu.php?id=897</a>)   Fturbo ~ 3.9GHz</li>
+<li>neo1  (i7-860     &#64;2.80GHz from 2009 <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?id=6">https://www.cpubenchmark.net/cpu.php?id=6</a>)     (no Fturbo)</li>
+<li>z6001 (Xeon-X5650 &#64;2.67GHz from 2010 <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?id=1304">https://www.cpubenchmark.net/cpu.php?id=1304</a>)  (no Fturbo)</li>
+</ul>
+<table class="docutils footnote" frame="void" id="netbench" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-2">[2]</a></td><td>the networked case is partly analyzed and understood, but in
+order to release this update today I will omit it for now.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="zlib" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-3">[3]</a></td><td>on a related note zlib is not the best compression library out there
+today and eventually it makes sense to switch to more modern ones that
+provide faster decompression.</td></tr>
+</tbody>
+</table>
+<div class="section" id="measurements-stability">
+<h2><a class="toc-backref" href="#toc-entry-5">Measurements stability</a></h2>
+<p>Modern hardware and operating systems have lots of fluid state that might be
+preventing one to get stable timings while doing benchmarks. For example by
+default on Linux the CPU frequencies might be changing depending on the load,
+on which CPUs OS scheduler decided to put processes, etc.</p>
+<p>Below is a list of factors that were took into account as ones that might
+affect benchmark timings and corresponding settings used to avoid
+instabilities.
+Some of the recipes, as the following text shows, might turn out to be useful
+to get better regular performance on our systems, not only for benchmarking.</p>
+<div class="section" id="cpu-frequency-p-states">
+<h3><a class="toc-backref" href="#toc-entry-6">CPU frequency (P-states)</a></h3>
+<p>As it was already said, the OS might be changing CPU frequencies all the time.
+To avoid timing instabilities caused by this, we set CPU frequency to a fixed
+value - the maximum frequency this particular CPU was designed to be running in
+the long term. The &quot;long term&quot; is important, as modern CPU can provide
+operations on faster then normal frequencies (so called &quot;turbo&quot; frequencies),
+but only for a limited time - until they get overheated.</p>
+<p>For example my notebook has <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?&amp;id=2608">i7-6600U</a> which identifies itself as <tt class="docutils literal">&quot;Intel(R)
+Core(TM) <span class="pre">i7-6600U</span> CPU &#64; 2.60GHz&quot;</tt> but actually allows clock speeds up to 3.4GHz.
+However the frequencies in <cite>(2.6GHz, 3.4GHz]</cite> range are turbo frequencies and
+cannot be used under intensive load for more than ~ (30 seconds ... 1 minute) -
+the time after which CPU just gets overheated and either its frequency is
+forcibly decreased, or its internal protection in the form of thermal
+throttling gets in forcing the CPU to skip doing work regularly to get its
+temperature to normal range.</p>
+<p>So for my notebook setting CPU frequency to fixed is done by:</p>
+<pre class="literal-block">
+# cpupower frequency-set -g performance
+# cpupower frequency-set --min 2.6Ghz --max 2.6GHz
+</pre>
+</div>
+<div class="section" id="cpu-idle-c-states">
+<h3><a class="toc-backref" href="#toc-entry-7">CPU idle (C-states)</a></h3>
+<p>However CPU frequency is not the only source of timing instability. Modern OS
+also try to save power by putting CPU into sleep when there is no immediate
+work to do. There are several CPU sleep states (so called C-states) from shallow to
+the most deepest one and the deeper a state is the less power CPU is using
+while being in it.  Entering and exiting such states is not free however and
+comes with the cost of energy and time latency. Below is list of C-states and
+corresponding exit latencies for <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?id=1304">Xeon-X5650</a> used in HP Z600 workstation:</p>
+<blockquote>
+C1(3µs) C1E(10µs) C3(20µs) C6(200µs)</blockquote>
+<p>As you can see if C6 is decided to be used, the latency to wake up might be up
+to 200µs which is rather big time in our context.</p>
+<p>Linux by default uses predictor to estimate for how long the CPU in question will not be
+needed before putting it into sleep. The predictor is not always working well,
+thus causing addition time latencies and slowdowns when it fails.</p>
+<p>This way all benchmarks are run with C-states greater than C1 disabled to avoid
+timing instabilities<a class="footnote-reference" href="#c1-needed" id="footnote-reference-4"><sup>4</sup></a>:</p>
+<pre class="literal-block">
+# cpupower idle-set --disable-by-latency 5      ; C1 &lt; latency &lt;= C1E
+</pre>
+<p>Please see <a class="reference internal" href="#appendix-ii-cpu-c-states">Appendix II. CPU C-states</a> for more details on the topic.</p>
+</div>
+</div>
+<div class="section" id="results-and-discussion">
+<h2><a class="toc-backref" href="#toc-entry-8">Results and discussion</a></h2>
+<p>Let's first consider serial <cite>zhash.{py,go}</cite> performance. Below are some
+relevant timings from deco:</p>
+<pre class="literal-block">
+cluster:deco dataset:wczblk1-8
+zeo/py/fs1-zhash.py                                     376µs ± 3%
+zeo/py/fs1-zhash.go                                     130µs ± 1%
+neo/py(!log)/sqlite-zhash.py                            329µs ± 6%
+neo/py(!log)/sqlite-zhash.go                            147µs ± 3%
+neo/py(!log)/sql-zhash.py                               375µs ± 3%
+neo/py(!log)/sql-zhash.go                               183µs ± 3%
+neo/go/fs1-zhash.py                                     226µs ± 3%
+neo/go/fs1-zhash.go                                    55.9µs ± 1%
+neo/go/sqlite-zhash.py                                  249µs ± 2%
+neo/go/sqlite-zhash.go                                 72.8µs ± 1%
+
+cluster:deco dataset:prod1-1024
+zeo/py/fs1-zhash.py                                     345µs ± 3%
+zeo/py/fs1-zhash.go                                     105µs ± 1%
+neo/py(!log)/sqlite-zhash.py                            328µs ± 6%
+neo/py(!log)/sqlite-zhash.go                            140µs ± 1%
+neo/py(!log)/sql-zhash.py                               373µs ± 3%
+neo/py(!log)/sql-zhash.go                               181µs ± 1%
+neo/go/fs1-zhash.py                                     229µs ± 1%
+neo/go/fs1-zhash.go                                    43.5µs ± 0%
+neo/go/sqlite-zhash.py                                  257µs ± 1%
+neo/go/sqlite-zhash.go                                 65.9µs ± 1%
+</pre>
+<p>What can be observer right away is that for both ZEO and NEO Python clients add
+significant latency by themselves. This is true qualitatively for all 4 hosts,
+and so should be investigated, at least for NEO/py.</p>
+<p>Another thing to note is that the SHA1 used in NEO for checksumming is heavy-weight:</p>
+<pre class="literal-block">
+node:deco
+crc32/py/4K                                            5.72µs ± 0%
+crc32/go/4K                                             279ns ± 0%
+sha1/py/4K                                             6.70µs ± 0%
+sha1/go/4K                                             5.59µs ± 0%
+unzlib/py/wczdata                                      27.1µs ± 1%
+unzlib/go/wczdata                                      26.7µs ± 0%
+unzlib/py/prod1-avg                                    5.12µs ± 2%
+unzlib/go/prod1-avg                                    5.25µs ± 0%
+
+cluster:deco dataset:wczblk1-8
+neo/go/fs1-zhash.go                                    55.9µs ± 1%
+neo/go/fs1(!sha1)-zhash.go(!sha1)                      39.3µs ± 1%
+neo/go/sqlite-zhash.go                                 72.8µs ± 1%
+neo/go/sqlite-zhash.go(!sha1)                          66.2µs ± 2%
+
+cluster:deco dataset:prod1-1024
+neo/go/fs1-zhash.go                                    43.5µs ± 0%
+neo/go/fs1(!sha1)-zhash.go(!sha1)                      38.1µs ± 1%
+neo/go/sqlite-zhash.go                                 65.9µs ± 1%
+neo/go/sqlite-zhash.go(!sha1)                          63.3µs ± 1%
+</pre>
+<p>The time for SHA1(4K) is ~ 6µs here. However it is more than 10% of whole time
+for <cite>neo/go/fs1-zhash.go</cite>. If the checksum is needed for data integrity
+verification only, what makes more sense is to use Castagnoli CRC32 (the one
+used by iSCSI which is more robust to errors compared to IEEE CRC32) because
+modern processors can compute both CRC32 in an order of magnitude smaller time
+compared to SHA1 (notice the <cite>crc32/go/4K</cite> timing above). For this reasons
+I do benchmarks for Go servers with both SHA1 normally computed and checked,
+and also with SHA1 computation skipped - to see how much improvements could be there
+by switching to more lightweight checksum.</p>
+<p>Neotest emits timings in <a class="reference external" href="https://github.com/golang/proposal/blob/master/design/14313-benchmark-format.md">Go benchmarking format</a> with the idea for that data
+to be easily analyzed and compared in between runs with Go tools like
+<a class="reference external" href="https://godoc.org/golang.org/x/perf/cmd/benchstat">benchstat</a> (see the pretty output above). However for scalability plotting it is
+more natural to leverage Python stack and matplotlib &amp; numpy in particular, and also I
+was keeping in mind the idea of eventually ingesting output from benchmark runs
+into ERP5 and then being able to analyze data there on ERP5 side. This way I
+first did <a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/t/benchlib.py">benchlib.py</a> Python module that allows to
+read benchmarking data on Python side, and then a (very hacky)
+<a href="https://lab.nexedi.com/kirr/neo/tree/70c63882/go/neo/t/benchplot">benchplot</a> utility to do scalability graphs for
+<cite>zwrk</cite> runs.</p>
+<p>Below is such graph for Z6001 computer which has 24 CPU (12 cores x 2 hyper-threads):</p>
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/z6001-wczblk1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/z6001-wczblk1.svg" style="width: 1152px; height: 1056px;" />
+<p>For brevity I let the picture speak for itself and we can also discuss things in
+followup exchanges.</p>
+<p>The data and graphs for all benchmarks performed are showed in <a class="reference internal" href="#appendix-iii-all-benchmarks">Appendix III.
+All benchmarks</a></p>
+</div>
+</div>
+<div class="section" id="current-problems">
+<h1><a class="toc-backref" href="#toc-entry-9">Current problems</a></h1>
+<p>There are some known problems not yet analyzed:</p>
+<ul class="simple">
+<li>prefetch not as fast as it should be.</li>
+<li>NEO/go storage is read-only without write mode support.</li>
+<li>NEO/go storage does not support MariaDB backend.</li>
+</ul>
+</div>
+<div class="section" id="resume">
+<h1><a class="toc-backref" href="#toc-entry-10">Resume</a></h1>
+<p>Proof-of-concept NEO/go storage was presented which shows faster serial speeds
+and scales more well compared to NEO/py.</p>
+<p>In the closing I'd like to thank Ivan, Rafael, Hardik and Jean-Paul for their help.</p>
+<p>Kirill</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="appendix-i-ssd-latency">
+<h1><a class="toc-backref" href="#toc-entry-11">Appendix I. SSD latency</a></h1>
+<p>Let's check SSD of deco to get more sense of SSD latencies:</p>
+<pre class="literal-block">
+root&#64;deco:~# hdparm -I /dev/sda |grep -i model
+        Model Number:       SanDisk X400 M.2 2280 512GB
+</pre>
+<p>The random direct (no kernel cache) <u><em>4K-read SSD latency</em></u> is ~ <strong>105μs</strong> on
+deco on average:</p>
+<pre class="literal-block">
+kirr&#64;deco:~/src/tools/fs/ioping$ ./ioping -D -i 0ms -s 4k -S 1024M -w 10s -q -k .
+
+--- . (ext4 /dev/sda3) ioping statistics ---
+96 k requests completed in 9.96 s, 375 MiB read, 9.64 k iops, 37.6 MiB/s
+generated 96.0 k requests in 10.0 s, 375.0 MiB, 9.60 k iops, 37.5 MiB/s
+min/avg/max/mdev = 96.3 us / 103.8 us / 325.4 us / 3.46 us
+&lt; 101.1 us      388     |
+&lt; 102.6 us      23263   | ************
+&lt; 104.1 us      38810   | ********************
+&lt; 105.6 us      28913   | ***************
+&lt; 107.1 us      3267    | *
+&lt; 108.6 us      364     |
+&lt; 110.1 us      75      |
+&lt; 111.6 us      90      |
+&lt; 113.1 us      87      |
+&lt; 114.6 us      78      |
+&lt; 116.1 us      71      |
+&lt; 117.6 us      60      |
+&lt; 119.1 us      55      |
+&lt; 120.6 us      49      |
+&lt; 122.1 us      37      |
+&lt; 123.6 us      37      |
+&lt; 125.1 us      45      |
+&lt; 126.6 us      30      |
+&lt; 128.1 us      18      |
+&lt; 129.6 us      12      |
+&lt; 131.1 us      12      |
+&lt;       +∞      139     |
+</pre>
+<p>If we don't disable kernel cache the random <u><em>4K cached disk read latency</em></u> for disk read
+requests that hit kernel cache is ~ <strong>0.6μs</strong> on deco on average:</p>
+<pre class="literal-block">
+kirr&#64;deco:~/src/tools/fs/ioping$ ./ioping -C -i 0ms -s 4k -S 1024M -w 10s -q -k .
+
+--- . (ext4 /dev/sda3) ioping statistics ---
+15.3 M requests completed in 9.14 s, 58.3 GiB read, 1.67 M iops, 6.38 GiB/s
+generated 15.3 M requests in 10.0 s, 58.3 GiB, 1.53 M iops, 5.83 GiB/s
+min/avg/max/mdev = 221 ns / 597 ns / 313.9 us / 325 ns
+&lt; 487 ns        155684  |
+&lt; 516 ns        1765442 | *****
+&lt; 546 ns        2679487 | ********
+&lt; 575 ns        3654902 | ***********
+&lt; 605 ns        3453224 | ***********
+&lt; 634 ns        1507604 | ****
+&lt; 664 ns        949194  | ***
+&lt; 693 ns        229810  |
+&lt; 723 ns        124053  |
+&lt; 752 ns        80134   |
+&lt; 782 ns        98617   |
+&lt; 812 ns        114873  |
+&lt; 841 ns        138809  |
+&lt; 871 ns        114586  |
+&lt; 900 ns        63176   |
+&lt; 930 ns        43167   |
+&lt; 959 ns        14998   |
+&lt; 989 ns        7450    |
+&lt; 1.02 us       2875    |
+&lt; 1.05 us       1279    |
+&lt; 1.08 us       1101    |
+&lt;       +∞      88638   |
+</pre>
+<p>(ioping was <a class="reference external" href="https://lab.nexedi.com/kirr/ioping/commit/000c0931">patched</a> <a class="reference external" href="https://lab.nexedi.com/kirr/ioping/commit/34c97f76">a bit</a> to display latency histogram)</p>
+</div>
+<div class="section" id="appendix-ii-cpu-c-states">
+<h1><a class="toc-backref" href="#toc-entry-12">Appendix II. CPU C-states</a></h1>
+<p>As it was <a class="reference internal" href="#cpu-idle-c-states">said</a> CPU sleep states can be causing timing instabilities and slowdowns.
+Let's look into more details on this topic.</p>
+<p>On Linux the part of the OS that is responsible for putting CPU into sleep is
+the so-called <a class="reference external" href="https://lwn.net/Articles/384146/">&quot;cpuidle&quot; subsystem</a>. In short there are idle drivers that know
+specifics of a CPU and how to enter it into particular sleep state, and idle
+governors that make the decision into which sleep state to enter the CPU when
+there is no work to do.</p>
+<p>There are two well-established idle governors:</p>
+<ul class="simple">
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/cpuidle/governors/ladder.c?id=v4.16-rc4-159-g1b88accf6a65">"ladder"</a> - the one that is
+<a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/cpuidle/Kconfig?id=v4.16-rc4-159-g1b88accf6a65#n20">documented</a> to be better suited for systems with periodic timer tick, and</li>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/cpuidle/governors/menu.c?id=v4.16-rc4-159-g1b88accf6a65">"menu"</a>   - the one that is
+<a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/cpuidle/Kconfig?id=v4.16-rc4-159-g1b88accf6a65#n23">documented</a> to be better suited for tickless systems.</li>
+</ul>
+<p>With menu being commonly used everywhere by default.</p>
+<!-- Let's first consider ladder - on ticking system the value of HZ is typically in -->
+<!-- [250, 1000] range, which translated to timer tick being performed every 1 - 4 -->
+<!-- millisecond. Since this is 1000 - 4000 µs sleeping for so long will ruin the -->
+<!-- performance if typical latency requirement is in order of 100µs. So ladder is -->
+<!-- out of question for us and we move on to consider menu, which is used by -->
+<!-- default today on most Linux systems.    XXX -->
+<p>Since now we are talking about tickless systems, in order to make the decision the
+governor needs to predict the future - it needs to know for how long
+time the CPU will not be needed. Knowing this is required because
+entering/exiting a sleep state itself needs energy and the overall savings could
+be reached only if CPU will reside in the state for long enough. This way every
+C-state, in addition to exit latency, has <cite>target_residency</cite> property and idle
+governor selects deepest state with residency time &lt; expected idle time.
+Below is list of exit-latency/target-residency for above mentioned Xeon-X5650:</p>
+<blockquote>
+C1(3µs/6µs) C1E(10µs/20µs) C3(20µs/80µs) C6(200µs/800µs)</blockquote>
+<p>Predicting the future, however, is not always easy - menu idle governor
+<a href="https://git.kernel.org/linus/4f86d3a8e2">originally started</a> by using next scheduled on this CPU timer as the
+only prediction source. This was putting systems into deeper than necessary
+sleeps and was harming performance. The performance was eventually
+<a href="https://git.kernel.org/linus/69d25870">fixed</a> by introducing correction factors that take current CPU
+load and IO waiters into account with the idea that the more loaded system
+is, the less deeper C-states should be used in order not to cause slowdown.
+Then menu was amended with <a href="https://git.kernel.org/linus/1f85f87d">repeating pattern detector</a> to be
+able to adjust itself to events, like incoming network traffic, that come from
+outside and do not correlate with local timer. This detector was later amended
+to <a href="https://git.kernel.org/linus/c96ca4fb">filter out outliers</a> for more stable detection. And that
+is menu state today.</p>
+<p>Let us put it again: whenever there is no immediate work for a CPU to do,
+the system is using predictor that estimates the time this CPU won't be needed,
+corrects the estimation by this-CPU load factor, and based on the result selects the
+deepest sleep state that fits into target window.
+And even if the predictor is not working correctly, for a busy server it should
+not matter much because correction by load should lower allowed target window
+significantly. Everything should be working ok, right?</p>
+<p>Except that it is not always the case:</p>
+<p>Let's consider 2 processes running on the same machine, one modelling ERP5
+worker thread and another - database, with worker constantly serially sending
+read requests to the database and waiting for it to reply. Given enough CPUs on
+the system the OS scheduler will be trying to keep both processes on separate
+CPUs, and this in turn means that the load factor for worker CPU might be
+small: there is no IO on it (the IO counted in load-factor is only for disk,
+not network IO), and if most of the time is spent waiting for the database to
+reply, the load of worker CPU itself will be small. This in turn means that
+prediction errors of putting worker CPU into sleep won't be corrected, and so
+if there is indeed prediction errors and there are C-states with long-enough
+exit latencies, the worker CPU might be put into deep sleep while waiting for
+database reply. When the reply comes, addition time penalty will be paid
+waiting for the worker CPU to wake up.</p>
+<p>This effect can be observed with real slowdowns on two kind of our machines: on the &quot;ASUS&quot;
+machines with <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?id=6">i7-860</a> CPU (identifies as <tt class="docutils literal">&quot;Intel(R) Core(TM) i7 CPU 860 &#64;
+2.80GHz&quot;</tt>), and on above-mentioned HP Z600 with Xeon-X5650:</p>
+<p>&quot;ASUS&quot; (<a href="https://lab.nexedi.com/kirr/neo/commit/23f8d82e">full benchmark</a>):</p>
+<pre class="literal-block">
+cluster:neo1 dataset:wczblk1-8
+zeo/py/fs1-zhash.py                                         516µs ± 8%               459µs ± 0%  -11.00%  (p=0.016 n=5+4)
+zeo/py/fs1-zwrk.go·1                                        195µs ± 1%               172µs ± 1%  -11.98%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zhash.py                                692µs ± 5%               390µs ± 1%  -43.67%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zwrk.go·1                               230µs ± 1%               191µs ± 2%  -16.86%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zhash.py                                   938µs ±50%               459µs ± 1%  -51.03%  (p=0.016 n=5+4)
+neo/py(!log)/sql-zwrk.go·1                                  305µs ± 7%               244µs ± 6%  -19.90%  (p=0.008 n=5+5)
+
+cluster:neo1 dataset:prod1-1024
+zeo/py/fs1-zhash.py                                         499µs ± 2%               436µs ± 2%  -12.61%  (p=0.008 n=5+5)
+zeo/py/fs1-zwrk.go·1                                        170µs ± 1%               146µs ± 1%  -13.66%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zhash.py                                678µs ± 3%               387µs ± 5%  -42.91%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zwrk.go·1                               209µs ± 3%               180µs ± 3%  -14.26%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zhash.py                                   922µs ±53%               477µs ±40%  -48.31%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·1                                  294µs ± 4%               230µs ± 2%  -21.61%  (p=0.008 n=5+5)
+</pre>
+<p>Z600 (<a href="https://lab.nexedi.com/kirr/neo/commit/5685f384">full benchmark</a>):</p>
+<pre class="literal-block">
+cluster:z6001 dataset:wczblk1-8
+zeo/py/fs1-zhash.py                                         675µs ± 5%               590µs ± 4%  -12.51%  (p=0.008 n=5+5)
+zeo/py/fs1-zwrk.go·1                                        217µs ± 3%               195µs ± 1%  -10.29%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zhash.py                                673µs ± 8%               482µs ± 4%  -28.32%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zwrk.go·1                               306µs ± 6%               220µs ± 1%  -27.99%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zhash.py                                   958µs ±28%               529µs ± 4%  -44.74%  (p=0.016 n=5+4)
+neo/py(!log)/sql-zwrk.go·1                                  395µs ±11%               276µs ± 3%  -30.18%  (p=0.008 n=5+5)
+
+cluster:z6001 dataset:prod1-1024
+zeo/py/fs1-zhash.py                                         646µs ± 3%               555µs ± 2%  -14.12%  (p=0.008 n=5+5)
+zeo/py/fs1-zwrk.go·1                                        186µs ± 4%               163µs ± 1%  -12.16%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zhash.py                                653µs ± 7%               467µs ± 4%  -28.50%  (p=0.008 n=5+5)
+neo/py(!log)/sqlite-zwrk.go·1                               273µs ± 4%               204µs ± 1%  -25.07%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zhash.py                                   961µs ±38%               518µs ± 2%  -46.11%  (p=0.016 n=5+4)
+neo/py(!log)/sql-zwrk.go·1                                  365µs ±11%               275µs ± 7%  -24.47%  (p=0.008 n=5+5)
+</pre>
+<p>The timings above compare latency to read 1 object from database for runs with C-states enabled to runs where C-states
+greater C1 were disabled<a class="footnote-reference" href="#c1-needed" id="footnote-reference-5"><sup>4</sup></a>. There were 5 iterations of
+each benchmark and in particular <cite>-zwrk.go</cite> ones were running each iteration
+for 10 seconds in C-states-enabled case to make sure CPU loading factor gets
+warmed up<a class="footnote-reference" href="#cpuload-window" id="footnote-reference-6"><sup>5</sup></a>.</p>
+<p>On these machines the slowdown effect does not even completely go away if there
+are many workers simultaneously accessing the database, and the database
+process itself acts as RPC-like frontend to MariaDB process (notice no
+neo/py/sqlite here, as sqlite backend is implemented by way of using libsqlite
+in the same process, while sql backend talks to separate MariaDB server process
+over unix socket):</p>
+<p>&quot;ASUS&quot;:</p>
+<pre class="literal-block">
+cluster:neo1 dataset:wczblk1-8
+neo/py(!log)/sql-zwrk.go·2                                  491µs ± 2%               412µs ± 3%  -15.94%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·3                                  740µs ± 2%               625µs ± 4%  -15.61%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·4                                  976µs ± 2%               837µs ± 1%  -14.28%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·8                                 1.98ms ± 2%              1.69ms ± 7%  -14.60%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·12                                2.98ms ± 2%              2.57ms ± 6%  -13.56%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·16                                4.03ms ± 3%              3.42ms ± 9%  -14.95%  (p=0.008 n=5+5)
+
+cluster:neo1 dataset:prod1-1024
+neo/py(!log)/sql-zwrk.go·2                                  483µs ± 2%               405µs ± 4%  -16.22%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·3                                  728µs ± 1%               640µs ± 5%  -11.98%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·4                                  978µs ± 3%               837µs ± 4%  -14.42%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·8                                 1.92ms ± 2%              1.63ms ± 1%  -15.10%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·12                                2.94ms ± 2%              2.52ms ± 3%  -14.18%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·16                                3.87ms ± 3%              3.27ms ± 3%  -15.56%  (p=0.008 n=5+5)
+</pre>
+<p>Z600:</p>
+<pre class="literal-block">
+cluster:z6001 dataset:wczblk1-8
+neo/py(!log)/sql-zwrk.go·2                                  514µs ± 5%               470µs ± 4%   -8.50%  (p=0.016 n=5+5)
+neo/py(!log)/sql-zwrk.go·3                                  741µs ± 3%               699µs ± 0%   -5.64%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·4                                 1.02ms ± 7%              0.95ms ± 5%   -6.66%  (p=0.032 n=5+5)
+neo/py(!log)/sql-zwrk.go·8                                 2.00ms ± 7%              1.91ms ± 1%   -4.52%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·12                                2.94ms ± 3%              2.87ms ± 3%     ~     (p=0.056 n=5+5)
+neo/py(!log)/sql-zwrk.go·16                                4.04ms ±11%              3.80ms ± 1%   -5.78%  (p=0.008 n=5+5)
+
+cluster:z6001 dataset:prod1-1024
+neo/py(!log)/sql-zwrk.go·2                                  524µs ± 5%               460µs ± 0%  -12.15%  (p=0.016 n=5+4)
+neo/py(!log)/sql-zwrk.go·3                                  754µs ±10%               689µs ± 1%   -8.64%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·4                                  975µs ±11%               927µs ± 0%   -4.98%  (p=0.016 n=5+4)
+neo/py(!log)/sql-zwrk.go·8                                 1.92ms ± 2%              1.83ms ± 1%   -4.53%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·12                                2.95ms ± 9%              2.73ms ± 1%   -7.65%  (p=0.008 n=5+5)
+neo/py(!log)/sql-zwrk.go·16                                4.12ms ± 8%              3.69ms ± 1%  -10.36%  (p=0.008 n=5+5)
+</pre>
+<p>The slowdown effect is however less easily observed on our &quot;Shuttle&quot;
+machines with <a class="reference external" href="https://www.cpubenchmark.net/cpu.php?id=897">i7-3770S</a> CPU (identifies as <tt class="docutils literal">&quot;Intel(R) Core(TM) <span class="pre">i7-3770S</span> CPU &#64;
+3.10GHz&quot;</tt>), and on my notebook - usually showing slighter changes which are
+harder (and more time consuming) to distinguish from noise.</p>
+<p>Let's try to understand what is going on.
+Below is the table that compares CPU of the machines:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="5%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Machine</th>
+<th class="head">N(CPU)</th>
+<th class="head">C-states (exit-latency / target-residency)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Z600</td>
+<td>24</td>
+<td>C1(3µs/6µs) C1E(10µs/20µs) C3(20µs/80µs) C6(200µs/800µs)</td>
+</tr>
+<tr><td>&quot;ASUS&quot;</td>
+<td>8</td>
+<td>C1(3µs/6µs) C1E(10µs/20µs) C3(20µs/80µs) C6(200µs/800µs)</td>
+</tr>
+<tr><td>&quot;Shuttle&quot;</td>
+<td>8</td>
+<td>C1(1µs/1µs) C1E(10µs/20µs) C3(59µs/156µs) C6(80µs/300µs)</td>
+</tr>
+<tr><td>deco</td>
+<td>4</td>
+<td>C1(2µs/2µs) C1E(10µs/20µs) C3(70µs/100µs) C6(85µs/200µs) C7s(124µs/800µs) C8(200µs/800µs) C9(480µs/5000µs) C10(890µs/5000µs)</td>
+</tr>
+</tbody>
+</table>
+<p>Comparing &quot;ASUS&quot; to &quot;Shuttle&quot; it can be seen that even though there is the
+same number of processors, the worst exit latency for &quot;Shuttle&quot; is
+significantly less compared to &quot;ASUS&quot;. This way misprediction errors has lower
+time penalties. It should be also taken into account that the time-latencies
+reported by CPU is the maximum time latencies and they usually correspond to
+the time when whole CPU package has to be brought up from that sleep state.
+When it is only one core that was sleeping the exit latency is usually smaller.</p>
+<p>However deco case is different. It presents the CPU with very deep
+sleep-states available, but there is no easily seen related performance penalty.
+But deco has only 2 cores (so 4 CPUs with hyper-threading) and this way
+there is simply no room to replay 3-processes ERP5-NEO-MariaDB scenario.
+Deco has also much faster single-thread performance (e.g. ~ 214K pystone/s at
+no-turbo frequency) compared to all other machines (~ 140K (shuttle), ~ 115K
+(Z600), ~ 105K (ASUS) pystone/s). This way typical request-reply cycle on deco
+could be taking less time with cpuidle governor thus tending to predict smaller
+sleep time windows.</p>
+<p>I had not investigated &quot;Shuttle&quot; and Deco cases till the end. However what is clear is:</p>
+<ol class="arabic simple">
+<li>The cpuidle predictor in Linux is not perfect and can make mistakes. This in
+turn can lead to slowdowns in RPC-like systems and also sometimes noise in benchmarks.
+In any case for timings stability it makes sense to disable C-states while
+running benchmarks.</li>
+<li>The C-states slowdown effect tends to be more visible in the following circumstances:<ul>
+<li>system has many CPUs,</li>
+<li>there are deep-enough C-states,</li>
+<li>the system load is RPC-like with lot of request-reply in between different
+processes.</li>
+</ul>
+</li>
+</ol>
+<p>This way all the benchmarks were run C-states &gt; C1 disabled:</p>
+<pre class="literal-block">
+# cpupower idle-set --disable-by-latency 5      ; C1 &lt; latency &lt;= C1E
+</pre>
+<p>For the reference there is also many technical resources on the network that
+recommend disabling C-states to get better performance of low-latency
+applications. (e.g. one from <a class="reference external" href="https://github.com/HewlettPackard/LinuxKI/wiki/Power-vs-Performance#cpu-idle-latencies-c-states">HP</a>).</p>
+<table class="docutils footnote" frame="void" id="c1-needed" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><em>(<a class="fn-backref" href="#footnote-reference-4">1</a>, <a class="fn-backref" href="#footnote-reference-5">2</a>)</em> C1 is needed for hyper-threading - if all C-states were
+disabled, the kernel would just busy-loop if there is no work to do, and this
+can be taking resources from other threads on the same CPU core.
+Exit-latency for C1 is usually relatively small, so leaving C1 enabled can be tolerated.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="cpuload-window" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-6">[5]</a></td><td>menu source explicitly <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/cpuidle/governors/menu.c?id=v4.16-rc4-159-g1b88accf6a65#n116">states</a>
+that CPU load factor has few seconds window. I also verified via monitoring
+<cite>watch -n1 -d cat /proc/sched_debug</cite> that corresponding OS-scheduler
+runqueue load adjusts to actual load changes in no more than 1 second.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="appendix-iii-all-benchmarks">
+<h1><a class="toc-backref" href="#toc-entry-13">Appendix III. All benchmarks</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="https://lab.nexedi.com/kirr/neo/raw/70c63882/t/time/20180318-deco.txt">20180318-deco.txt</a></li>
+<li><a class="reference external" href="https://lab.nexedi.com/kirr/neo/raw/70c63882/t/time/20180318-neo1.txt">20180318-neo1.txt</a></li>
+<li><a class="reference external" href="https://lab.nexedi.com/kirr/neo/raw/70c63882/t/time/20180318-rio.txt">20180318-rio.txt</a></li>
+<li><a class="reference external" href="https://lab.nexedi.com/kirr/neo/raw/70c63882/t/time/20180319-z6001.txt">20180319-z6001.txt</a></li>
+</ul>
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/deco-wczblk1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/deco-wczblk1.svg" style="width: 1152px; height: 1056px;" />
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/deco-prod1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/deco-prod1.svg" style="width: 1152px; height: 1056px;" />
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/neo1-wczblk1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/neo1-wczblk1.svg" style="width: 1152px; height: 1056px;" />
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/neo1-prod1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/neo1-prod1.svg" style="width: 1152px; height: 1056px;" />
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/rio-wczblk1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/rio-wczblk1.svg" style="width: 1152px; height: 1056px;" />
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/rio-prod1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/rio-prod1.svg" style="width: 1152px; height: 1056px;" />
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/z6001-wczblk1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/z6001-wczblk1.svg" style="width: 1152px; height: 1056px;" />
+<img alt="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/z6001-prod1.svg" src="https://lab.nexedi.com/kirr/misc/raw/c8f923a2/t/z6001-prod1.svg" style="width: 1152px; height: 1056px;" />
+<!-- vim: ts=8 sts=4 sw=4 et ft=rst -->
+</div>
+</div>
+</body>
+</html>

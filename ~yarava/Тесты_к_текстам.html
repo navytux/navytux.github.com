@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
+<title>Тесты к текстам</title>
+<meta name="author" content="© 2012-2018 Варвара Подтакуй, CC BY-SA 3.0" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="id1">
+<h1 class="title">Тесты к текстам</h1>
+<h2 class="subtitle" id="id2">Тесты по текстам к учебнику <cite>&quot;Практический курс китайского языка&quot;</cite> под ред. А.Ф. Кондрашевского</h2>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Автор:</th>
+<td>© 2012-2018 Варвара Подтакуй, <a class="last reference internal" href="#id9"><object class="align-middle" data="x-cc-by-sa.svg" style="width: 5em; height: 1.0em;" type="image/svg+xml">CC BY-SA 3.0</object></a></td></tr>
+</tbody>
+</table>
+<div class="contents topic" id="id3">
+<p class="topic-title first">Содержание</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id4" id="id10">第14课</a></li>
+<li><a class="reference internal" href="#id5" id="id11">第18课</a></li>
+<li><a class="reference internal" href="#id6" id="id12">第23课</a></li>
+<li><a class="reference internal" href="#id7" id="id13">第24课</a></li>
+<li><a class="reference internal" href="#id8" id="id14">第29课</a></li>
+<li><a class="reference internal" href="#id9" id="id15">Условия использования и распространения</a></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h1><a class="toc-backref" href="#id10">第14课</a></h1>
+<ol class="arabic">
+<li><p class="first">玛沙家有谁？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>爸爸、妈妈、弟弟和妹妹</li>
+<li>爸爸、妈妈、哥哥和姐姐</li>
+<li>爸爸、妈妈、爷爷和奶奶</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙的爸爸做什么工作？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>他是大夫</li>
+<li>他是工程师</li>
+<li>他是教授</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙的爸爸在哪儿工作?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>他在银行工作</li>
+<li>他在外语学院工作</li>
+<li>他在书店工作</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙的爸爸、妈妈忙不忙？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>很忙</li>
+<li>不太忙</li>
+<li>不忙</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙有没有弟弟和妹妹？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>有弟弟和妹妹</li>
+<li>没有弟弟，也没有妹妹</li>
+<li>有弟弟，没有妹妹</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙的哥哥做什么工作？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>他是公司的职员</li>
+<li>他是银行的职员</li>
+<li>他是公司的经理</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">说话的人认识不认识玛沙的哥哥？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>认识</li>
+<li>不认识</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙哥哥的爱人现在工作不工作?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>她工作</li>
+<li>她不工作</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙哥哥的家有没有孩子？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>有</li>
+<li>没有</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">他们的孩子叫什么名字？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>Bǎo’ěr</li>
+<li>尼古拉</li>
+<li>安德烈</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙的姐姐在哪儿学习？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>在国外</li>
+<li>在法国</li>
+<li>在中国</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙想不想她姐姐？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>很想</li>
+<li>不太想</li>
+<li>不想</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙常给姐姐写信吗？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>她常给姐姐写信</li>
+<li>她不常给姐姐写信</li>
+<li>她不写信</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">姐姐常给玛沙买什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>中文书和画报</li>
+<li>法语书和画报</li>
+<li>笔，纸和本子</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id5">
+<h1><a class="toc-backref" href="#id11">第18课</a></h1>
+<ol class="arabic">
+<li><p class="first">丁云是哪个系的学生？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>法语系</li>
+<li>中文系</li>
+<li>英语系</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">她从哪儿来这儿学习？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>从美国</li>
+<li>从中国</li>
+<li>从法国</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">他们系有几个中国留学生?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>五个</li>
+<li>十五个</li>
+<li>五十个</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">留学生住在哪儿？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>在玛沙家</li>
+<li>在安德烈家</li>
+<li>在学生宿舍</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">丁云几点起床？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>六点钟</li>
+<li>六点一刻</li>
+<li>差五分六点</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">起床以后她做什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>吃饭</li>
+<li>看电影</li>
+<li>学习外语</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">丁云几点去学院?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>七点</li>
+<li>七点半</li>
+<li>八点一刻</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">丁云几点上课，几点下课？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>八点上课，差十分十二点下课</li>
+<li>八点上课，十二点下课</li>
+<li>八点半上课，十一点五十分下课</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">下课以后，丁云去哪儿？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>去阅览室</li>
+<li>回宿舍</li>
+<li>去食堂吃饭</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">下午丁云去朋友家做什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>跟他们说俄语</li>
+<li>跟他们一起看电影</li>
+<li>问他们问题</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">丁云去老师那儿做什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>跟老师一起看画报和杂志</li>
+<li>问老师问题</li>
+<li>跟老师说俄语</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">晚上丁云做什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>休息</li>
+<li>有时候去阅览室看书，有时候去老师那儿问问题</li>
+<li>有时候给爸爸、妈妈写信，有时候去看电影</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">晚上丁云几点睡觉？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>十一点钟</li>
+<li>十一点半</li>
+<li>有时候十一点，有时候十二点</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h1><a class="toc-backref" href="#id12">第23课</a></h1>
+<ol class="arabic">
+<li><p class="first">玛沙去找丁云的时候，丁云正在做什么呢？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>看电视</li>
+<li>看报</li>
+<li>复习课文</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">报纸上有什么新闻？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>中国友好代表团正在访问俄罗斯呢</li>
+<li>北京小学的老师来俄罗斯教俄罗斯孩子们汉语</li>
+<li>一个友好代表团正在访问中国呢</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">那条新闻是几月几号的?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>是二月二十七号的</li>
+<li>是二月二十三号的</li>
+<li>是五月二十七号的</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">那个代表团参观什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>一个工厂</li>
+<li>北京小学</li>
+<li>北京外语学院</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">报纸上新闻旁边有几张照片？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>三张</li>
+<li>两张</li>
+<li>十二张</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">左边的照片是什么照片？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>是一位老师给代表团介绍呢</li>
+<li>是代表团进教室的时候，学生们正在上课呢</li>
+<li>是代表团跟孩子们一起玩儿呢</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">右边的照片是什么照片?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>是一位老师给代表团介绍呢</li>
+<li>是代表团进教室的时候，学生们正在上课呢</li>
+<li>是代表团跟孩子们一起玩儿呢</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">中间的照片是什么照片？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>是一位老师给代表团介绍呢</li>
+<li>是代表团进教室的时候，学生们正在上课呢</li>
+<li>是代表团跟孩子们一起玩儿呢</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">玛沙的妈妈为什么一定会喜欢这条新闻？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>她在北京小学工作</li>
+<li>她喜欢中国孩子</li>
+<li>他喜欢看报</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">那张报有意思吗？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>真有意思</li>
+<li>不太有意思</li>
+<li>没意思</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">那张报纸的名字是什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>人民画报</li>
+<li>人民日报</li>
+<li>光明日报</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id7">
+<h1><a class="toc-backref" href="#id13">第24课</a></h1>
+<ol class="arabic">
+<li><p class="first">安德烈和安娜的家在哪儿？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>在北京</li>
+<li>在农村</li>
+<li>在圣彼得堡</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜坐什么车去看她哥哥？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>坐飞机</li>
+<li>坐汽车</li>
+<li>坐火车</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜去看安德烈的时候，安德烈在哪儿?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>在农村</li>
+<li>在城外</li>
+<li>在学生城</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜认识不认识安德烈的宿舍？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>认识</li>
+<li>不认识</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜知不知道她哥哥的宿舍号？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>知道</li>
+<li>不知道</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈的宿舍号是几号？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>六号</li>
+<li>二号</li>
+<li>二十六号</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈的宿舍在哪儿？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>在二号宿舍的后边</li>
+<li>在二号宿舍的前边</li>
+<li>在六号宿舍的后边</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">谁帮助安娜找安德烈的宿舍？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>一位在旁边复习课文的学生</li>
+<li>一位在后边锻炼身体的老师</li>
+<li>一位在旁边锻炼身体的学生</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜进安德烈的宿舍的时候，安德烈正在做什么呢？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>复习英语</li>
+<li>复习汉语</li>
+<li>复习日语</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈知不知道他妹妹要来？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>知道</li>
+<li>不知道</li>
+<li>安娜上星期告诉安德烈她要来</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜和安德烈的爸爸、妈妈怎么样？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>他们都很好</li>
+<li>他们身体不好</li>
+<li>妈妈的身体好，爸爸的身体不太好</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜给安德烈的点心是谁做的？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>是他们的姐姐做的</li>
+<li>是安德烈的女朋友做的</li>
+<li>是他们妈妈做的</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">上课的时候，安德烈的老师认真不认真？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>很认真</li>
+<li>不认真</li>
+<li>有时候认真，有时候不认真</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈请安娜回家以后做什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>感谢妈妈</li>
+<li>问爸爸好</li>
+<li>再来一些点心</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">为什么安娜问安德烈汉语难不难？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>因为她看见了安德烈的中文本子</li>
+<li>因为安德烈的宿舍有汉语书</li>
+<li>因为那时候中国老师来安德烈的宿舍</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安娜觉得汉语难不难？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>她觉得汉语一定很难</li>
+<li>她觉得汉语不太难</li>
+<li>她觉得汉语不难</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈觉得汉语什么难？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>汉字</li>
+<li>语法</li>
+<li>口语</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈觉得汉语什么不难？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>汉字</li>
+<li>语法</li>
+<li>口语</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈喜欢不喜欢写汉字？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>很喜欢</li>
+<li>不喜欢</li>
+<li>不太喜欢</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈现在忙不忙？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>很忙</li>
+<li>不忙</li>
+<li>每天都可以休息</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈每天做什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>休息</li>
+<li>学习</li>
+<li>去看电影</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈每天都几点睡觉？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>十点</li>
+<li>十一点</li>
+<li>十点半</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">安德烈的中国老师姓什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>他姓李</li>
+<li>他姓王</li>
+<li>他姓张</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">下课以后，中国老师用什么语言跟他的留学生说话？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>用汉语</li>
+<li>用英语</li>
+<li>用每个学生的语言</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">下课以后，留学生常常去哪儿？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>去看中国电影</li>
+<li>去看中国朋友</li>
+<li>去看中国老师</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id8">
+<h1><a class="toc-backref" href="#id14">第29课</a></h1>
+<ol class="arabic">
+<li><p class="first">古波和帕兰卡乘坐的飞机是开往哪儿的班机？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>开往上海的班机</li>
+<li>开往北京的班机</li>
+<li>开往广州的班机</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">古波和帕兰卡听懂了飞机上广播的汉语吗？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>听懂了</li>
+<li>没听懂</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">飞机上的人多不多?</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>非常多</li>
+<li>不太多</li>
+<li>不多</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">飞机上的服务员请大家吃什么、喝什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>吃糖、喝茶</li>
+<li>吃点心、喝咖啡</li>
+<li>吃面包、喝牛奶</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">飞机上的服务员会说什么语言？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>汉语和英语</li>
+<li>法语和英语</li>
+<li>俄语和汉语</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">古波和帕兰卡跟服务员说什么语言？？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>汉语</li>
+<li>英语</li>
+<li>日语</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">飞机上的午饭有什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>火腿、奶酪和鸡蛋</li>
+<li>中国饺子</li>
+<li>点心、面包和四个中国菜</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">中国菜做得好吃不好吃？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>很好吃</li>
+<li>不太好吃</li>
+<li>不好吃</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">吃饭以后，古波要喝什么?</p>
+<blockquote>
+<ol class="loweralpha simple" start="4">
+<li>英国茶</li>
+<li>矿泉水</li>
+<li>中国茶</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">吃饭以后，帕兰卡要喝什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>中国茶</li>
+<li>咖啡</li>
+<li>牛奶</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">服务员给了古波和帕兰卡什么？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>一杯咖啡、一杯红茶</li>
+<li>一杯水、一杯绿茶</li>
+<li>一杯咖啡、一杯花茶</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">古波和帕兰卡去哪儿学习？</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>去法国</li>
+<li>去中国</li>
+<li>去日本</li>
+<li>在中国</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<!-- FIXME сделать include_path -->
+</div>
+<hr class="docutils" />
+<div class="section" id="id9">
+<h1><a class="toc-backref" href="#id15">Условия использования и распространения</a></h1>
+<div class="admonition admonition-">
+<p class="first admonition-title"></p>
+<p>© 2012-2018 Варвара Подтакуй</p>
+<p>Данное произведение распространяется на условиях лицензии Creative Commons
+Attribution-Share Alike (Атрибуция - С сохранением условий) 3.0 (CC-BY-SA 3.0).
+<cite>Вы можете свободно</cite> <strong>Делиться</strong> (копировать, распространять и передавать
+другим лицам данное произведение) и <strong>Изменять</strong> (создавать производные
+произведения), <cite>при обязательном соблюдении следующих условий</cite>:</p>
+<dl class="last docutils">
+<dt><object data="by.svg" type="image/svg+xml">1.</object> <strong>Атрибуция (Attribution)</strong> —  Вы должны атрибутировать произведение (указывать</dt>
+<dd>автора и источник) в порядке, предусмотренном автором или лицензиаром (но
+только так, чтобы никоим образом не подразумевалось, что они поддерживают вас
+или использование вами данного произведения).</dd>
+<dt><object data="sa.svg" type="image/svg+xml">2.</object> <strong>Сохранение условий (Share Alike)</strong> — Если вы изменяете, преобразуете или</dt>
+<dd>берёте за основу это произведение, вы можете распространять результат только по
+такой же или подобной лицензии, что и у данного произведения.</dd>
+</dl>
+</div>
+<!-- XXX width 5em сделано чтобы обойти неправильную отрисовку SVG в chromium -->
+</div>
+</div>
+</body>
+</html>

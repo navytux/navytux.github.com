@@ -1,0 +1,43 @@
+#!/bin/bash -e
+# pkg-rebuild rebuilds all packages/distribution indices such as Release/Packages/Sources/...
+
+# deb_update <path>		e.g. `deb_update debian/buster`
+# updates all indices for deb release @<path>
+deb_update() {
+	path=$1
+	afa=apt-ftparchive
+	if [ -e $path/apt.conf ]; then
+		afa="$afa -c `realpath $path/apt.conf`"
+	fi
+	(cd $path && $afa sources  . >Sources)
+	(cd $path && $afa packages . >Packages)
+
+	# first rebuild release with previous date and see if it is the same
+	# -> rebuild release with current date only if release actually differs
+	release_changed=y
+	if [ -e $path/Release ]; then
+		release_changed=n
+		prevdate=`sed -n 's/^Date: //p' $path/Release`
+		mv $path/Release $path/Release.old
+		$afa -o APT::FTPArchive::Release::Date="$prevdate" release  $path >$path/Release.new
+		cmp -s $path/Release.old $path/Release.new || release_changed=y
+		#diff -u $path/Release.old $path/Release.new || :
+		rm $path/Release.new
+		mv $path/Release.old $path/Release
+	fi
+
+	if [ $release_changed == y ]; then
+		rm -f $path/Release
+		$afa release  $path >$path/Release.new
+		mv $path/Release.new $path/Release
+		rm -f $path/InRelease;    gpg --clearsign -o $path/InRelease   $path/Release
+		rm -f $path/Release.gpg;  gpg -abs        -o $path/Release.gpg $path/Release
+	fi
+}
+
+
+# ---- main ----
+
+deb_update debian/buster
+deb_update debian/stretch
+deb_update ubuntu/xenial

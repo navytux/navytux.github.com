@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.17.1b2.dev: http://docutils.sourceforge.net/" />
+<title>Update on my wendelin.core v2 work</title>
+<meta name="author" content="Kirill Smelkov" />
+<meta name="date" content="10 Aug 2018" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id$
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="update-on-my-wendelin-core-v2-work">
+<h1 class="title">Update on my wendelin.core v2 work</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Kirill Smelkov</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>10 Aug 2018</td></tr>
+</tbody>
+</table>
+<p>( Romain said nobody knows what I'm doing, so quick update follows )</p>
+<p>In WWM project we faced a situation, when despite having a beefy machine with
+40 CPUs and 128GB of RAM, we cannot run
+more than 5-10 Zope activity processes, because wendelin.core v1 RAM usage is
+duplicated for every Zope, and so by increasing Zope count we would run out of
+memory.</p>
+<p>The RAM is duplicated because currently wendelin.core library manages its RAM
+per user process, not globally per whole machine. We came to this state because
+when initially starting to work on wendelin.core I did not know neither ZODB
+nor Zope, and even after studying ZODB there was no clear understanding on my
+side that a web site implementation usually runs many Zope processes instead of
+many worker threads.</p>
+<p>The solution for duplicated RAM usage problem is conceptually simple: move
+pages that represent unmodified BigFile data parts to a central per-machine
+place. One such place is the OS kernel's pagecache. Since for performance
+reason it was already planned to move to exposing BigFile data as synthetic
+files that would be regularly <cite>mmap</cite>'ed in order to avoid overhead associated
+with managing virtual memory in userspace (the way wendelin.core v1 currently
+works), such move naturally fits with the plan.</p>
+<p>This way wendelin.core v2 settles on two goals:</p>
+<ul class="simple">
+<li>to speedup pagefault handling, and</li>
+<li>to reduce wendelin.core RAM consumption dramatically.</li>
+</ul>
+<p>with the plan to achieve the goals by switching to be mainly using kernel
+virtual memory manager with Bigfiles now primarily being accessed through plain OS-level
+<cite>mmap</cite> to files served by synthetic filesystem. This should remove the overhead
+of handling pagefaults in userspace and make bigfile's cache (now it will be the
+kernel's pagecache) to be shared in between several processes.</p>
+<div class="section" id="wendelin-core-file-system-wcfs">
+<h1>Wendelin.core file system (WCFS)</h1>
+<p>The main component of wendelin.core v2 is its synthetic filesystem to expose
+<cite>ZBigFile</cite> and <cite>ZBigArray</cite> data as regular files for <cite>mmap</cite>. The name of the
+filesystem is <cite>wcfs</cite>. It should efficiently serve its many client Zope
+processes accessing bigfile data simultaneously. This poses concurrency
+requirement on the implementation.</p>
+<p>The filesystem is on one side a FUSE server that is serving e.g. data read
+requests from the kernel, and on the other side a ZODB client that actually fetches
+that bigfile data from the database server. After bigfile data is read from the
+database it will be handed to kernel and will remain in the kernel pagecache
+for accesses. However a <cite>ZBigFile</cite> consists not only of actual data payload, but
+also of a <a href="https://lab.nexedi.com/kirr/wendelin.core/tree/v0.12-6-g318efce0bf/bigfile/file_zodb.py#L447">BTree index</a> to navigate by file
+offset to a <cite>ZBlk</cite> object with data for that particular file chunk. This index
+cannot be stored in the kernel cache and have to be explicitly cached in user
+memory inside <cite>wcfs</cite> process.</p>
+<p>The same file could be potentially accessed by several clients at the same time
+simultaneously. This poses requirement that file's in-RAM index to be shared in
+between several FUSE request handlers serving read requests for that file.</p>
+<p>A natural way to access data and index objects in ZODB is obviously via regular
+ZODB client framework. However in Python ZODB implementation there is a hard
+requirement that only one thread can be using a ZODB Connection and an object
+at a time. If this invariant is not followed, the program will likely to crash
+with segfault. However if we will directly use one ZODB Connection per 1 thread
+handling FUSE request, it will duplicate e.g. the in-RAM file index.</p>
+<p>Taking this, and concurrency requirement into account, I decided to implement
+<cite>wcfs</cite> in Go. The con of this decision is that ZODB client framework has to be
+developed for the Go language, but the pros are that we don't have to fix
+architectural limitation of 1 database connection = 1 thread in ZODB/py, and
+that we don't have to fix Python's GIL. The pros far outweighs the con in my
+view.</p>
+<p><cite>Wcfs</cite> organization is documented <a href="https://lab.nexedi.com/kirr/wendelin.core/tree/512d593d/wcfs/wcfs.go#L20">here</a>. Basically
+For every <cite>ZBigFile</cite> there is <cite>bigfile/&lt;bigfileX&gt;/</cite> directory with <cite>head/</cite> and
+<cite>&#64;&lt;tid&gt;/</cite> subdirectories representing latest and snapshotted bigfile states
+correspondingly. We need most of Zopes requests to be served from data in
+<cite>head/</cite>, since only then it will be 1 file that serves <cite>ZBigFile</cite> data without
+wasting pagecache with duplicates. However if one Zope commits changes to
+<cite>ZBigFile</cite> while another Zope is not yet synchronized with latest database
+transaction, that second Zope, during remaining time of its current
+transaction, needs to access changed file parts from particular snapshotted
+<cite>&#64;&lt;tid&gt;/</cite> state. The idea is that <cite>&#64;&lt;tid&gt;/</cite> accesses should be usually not
+frequent and for not large parts. This way most of the read accesses will be
+served directly from <cite>head/</cite>.</p>
+<p>In order to support above-mentioned isolation property, wcfs employs
+<a href="https://lab.nexedi.com/kirr/wendelin.core/tree/512d593d/wcfs/wcfs.go#L96">invalidation protocol</a> for a Zope to become aware
+when part of data in <cite>head/</cite> is no longer appropriate for its current view of
+the database. The protocol requires tight cooperation from <cite>wcfs</cite> and its
+clients. There is a <a href="https://lab.nexedi.com/kirr/wendelin.core/tree/512d593d/wcfs/wcfs.go#L157">protection against slow or faulty clients</a>, so that one slow or hanged Zope does not prevent progress of
+other ERP5 nodes.</p>
+<p><a href="https://lab.nexedi.com/kirr/wendelin.core/tree/512d593d/wcfs/wcfs.go#L181">Writing data</a> is still planned to be handled on
+client side in Zope/Python. This frees us from implementing distributed
+transactions (where changes in one transaction would be committed jointly by a
+ERP5 and wcfs processes) and simplifies first <cite>wcfs</cite> version with the need to
+implement only read part of ZODB protocol.</p>
+<p>The filesystem <a href="https://lab.nexedi.com/kirr/wendelin.core/tree/512d593d/wcfs/">implementation</a> is currently very draft and incomplete with
+development being done incrementally driven step-by-step together with tests.</p>
+</div>
+<div class="section" id="zodb-go">
+<h1>ZODB/go</h1>
+<p>As it was said, <cite>wcfs</cite> needs ZODB/go subsystem. And one thing that I recently
+draftly finished is exactly this. Please see zodb <a class="reference external" href="https://godoc.org/lab.nexedi.com/kirr/neo/go/zodb">Go package</a> overview for
+details, especially its <a class="reference external" href="https://godoc.org/lab.nexedi.com/kirr/neo/go/zodb#hdr-Application_layer">Application layer</a> section. The package has first-class
+support for <a class="reference external" href="https://godoc.org/lab.nexedi.com/kirr/neo/go/zodb#hdr-Python_data">Python data</a> stored in ZODB as pickles. It also allows to
+associate Go types with classes in ZODB and to load those objects as live Go
+objects on client side. For example <a class="reference external" href="https://godoc.org/lab.nexedi.com/kirr/neo/go/zodb/btree">BTrees</a> are <a href="https://lab.nexedi.com/kirr/neo/tree/2dba8607/go/zodb/btree/btree.go">handled</a> this way.</p>
+<p>The package should have more-or-less good documentation, but just for the
+reference here are the links to its code responsible for application layer:</p>
+<div class="line-block">
+<div class="line"><a href="https://lab.nexedi.com/kirr/neo/tree/2dba8607/go/zodb/persistent_api.go">persistent_api.go</a></div>
+<div class="line"><a href="https://lab.nexedi.com/kirr/neo/tree/2dba8607/go/zodb/persistent.go">persistent.go</a></div>
+<div class="line"><a href="https://lab.nexedi.com/kirr/neo/tree/2dba8607/go/zodb/connection.go">connection.go</a></div>
+<div class="line"><a href="https://lab.nexedi.com/kirr/neo/tree/2dba8607/go/zodb/pydata.go">pydata.go</a></div>
+<div class="line"><a href="https://lab.nexedi.com/kirr/neo/tree/2dba8607/go/zodb/zodbpy.go">zodbpy.go</a></div>
+<div class="line"><a href="https://lab.nexedi.com/kirr/neo/tree/2dba8607/go/zodb/db.go">db.go</a></div>
+</div>
+<p>Besides BTrees, <cite>wcfs</cite> is also <a href="https://lab.nexedi.com/kirr/wendelin.core/tree/512d593d/wcfs/zblk.go">mapping</a> to Go
+<a href="https://lab.nexedi.com/kirr/wendelin.core/tree/v0.12-6-g318efce0bf/bigfile/file_zodb.py#L163">ZBlk</a> <a href="https://lab.nexedi.com/kirr/wendelin.core/tree/v0.12-6-g318efce0bf/bigfile/file_zodb.py#L266">objects</a>  that are used to store <cite>ZBigFile</cite> data.</p>
+</div>
+<div class="section" id="pygolang">
+<h1>Pygolang</h1>
+<p>Another thing of note is <a class="reference external" href="https://pypi.org/project/pygolang/">pygolang</a> - my library that brings channels with Go
+semantic and other Go-like features to Python. Pygolang originated from my
+work on <a class="reference external" href="https://godoc.org/lab.nexedi.com/kirr/go123/xnet/lonet">lonet</a> - a virtual network that allows to simulate several hosts on one
+machine on top of its TCP loopback. Lonet purpose is to test combined Go/Python
+NEO clusters for correctness, and in particular I have developed pygolang while
+doing lonet <a class="reference external" href="https://lab.nexedi.com/kirr/go123/blob/2789db4e/xnet/lonet/__init__.py">Python port</a> after getting tired for the lack of adequate (to my
+view) synchronization primitives in Python.</p>
+<p>Current state of pygolang is that it is correct, but not optimized (I did not
+even benchmarked it at all), since for lonet I needed only correctness.
+However if pygolang starts to be used more (it is already used e.g. in <a class="reference external" href="https://lab.nexedi.com/kirr/wendelin.core/blob/512d593d/wcfs/__init__.py#L135-239">wcfs.py</a> in
+non-performance critical parts) the plan is:</p>
+<ul class="simple">
+<li>to move it to Cython so that channel operations and <cite>select</cite> are fast,</li>
+<li>to glue it with gevent, so that we can more tightly integrate e.g. wait/wakeup with its scheduler,</li>
+<li>to provide <cite>gpython</cite> interpreter, that sets <cite>UTF-8</cite> as default encoding,
+always makes gevent pre-available and puts <cite>go</cite>, <cite>chan</cite>, <cite>select</cite> etc into
+builtin namespace.</li>
+</ul>
+<p>Kirill</p>
+</div>
+</div>
+</body>
+</html>
