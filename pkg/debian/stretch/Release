@@ -1,0 +1,16 @@
+Codename: stretch
+Date: Sun, 11 Oct 2020 08:30:29 +0000
+Description: Kirr's packages for Debian 9
+Origin: Kirill Smelkov
+MD5Sum:
+ f2c3816f9a90838681c392ee17005326              883 Packages
+ 292239d5583aed24cdbb206f04ba4291             1307 Sources
+SHA1:
+ 0aec67b56f9a18bac01f189b1b2fac45c275e93a              883 Packages
+ 12838ff253dc9f6add70565790e20da8298393dc             1307 Sources
+SHA256:
+ f13f215cb28dab86294930042a95650c0ccc0c2c41ae65fea97423ba002fe6d5              883 Packages
+ 7a6802ecfde46f732a070cd6e28d826bfb19f6d10cc5904b5931bc3b5eba3610             1307 Sources
+SHA512:
+ d2ffcc649c73c1528fd7a115b6012184d24336520d7425925888d19813f1186045c37b21d9523a9ccb5b201cbf797d67a44558cdfa346d842d47b55245143bf3              883 Packages
+ 5b52c07895f9c52c913b12da009a4d9cfa9953cafab95245d073bec234ecde3629681252530e3f1c3459dd3bf4ce9787c4289d155ad4e545feea584622aaa63c             1307 Sources
