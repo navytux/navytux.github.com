@@ -1,0 +1,31 @@
+=====================
+*navytux.spb.ru/pkg/*
+=====================
+
+This place contains packages [#]_ prepared for various distributions [#]_.
+
+Debian
+======
+
+- Debian 10 (`deb http://navytux.spb.ru/pkg/debian/buster ./`)
+- Debian 9  (`deb http://navytux.spb.ru/pkg/debian/stretch ./`)
+
+
+Ubuntu
+======
+
+- 18.04 LTS TODO bionic
+- 16.04 LTS (`deb http://navytux.spb.ru/pkg/ubuntu/xenial ./`)
+
+
+----
+
+
+.. [#] for example `nxd-fuse-dkms` package needed for wendelin.core__
+
+    __ https://pypi.org/project/wendelin.core
+
+.. [#] repositories are signed with the following `key`__ (fingerprint
+    0955 B024 250E EFFC FE42 365B 66CA 7884 13F6 7549)
+
+    __ http://keys.gnupg.net/pks/lookup?search=kirr%40nexedi.com&fingerprint=on&op=index

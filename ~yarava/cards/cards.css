@@ -1,0 +1,205 @@
+/* CSS стили для карточек
+ * Copyright (C) 2018-2023 Kirill Smelkov <kirr@navytux.spb.ru>
+ *
+ * This program is free software: you can Use, Study, Modify and Redistribute
+ * it under the terms of the GNU General Public License version 3, or (at your
+ * option) any later version, as published by the Free Software Foundation.
+ *
+ * You can also Link and Combine this program with other software covered by
+ * the terms of any of the Free Software licenses or any of the Open Source
+ * Initiative approved licenses and Convey the resulting work. Corresponding
+ * source of such a combination shall include the source code for all other
+ * software used.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * See COPYING file for full licensing terms.
+ */
+
+html {
+  /* шрифт для всего */
+  font-family: "Times New Roman", serif;
+}
+
+h1, .copyright {
+  text-align: center;
+}
+
+.copyright img {
+  height: 1em;      /* svg(cc by-sa) - высота по тексту */
+}
+
+
+/* карточка */
+li.card {
+  display:    inline-block;  /* XXX */
+  border:     1px solid black;
+  box-shadow: 4px 4px 2px #444;
+  padding:    4px 4px;
+  margin:     8px;
+}
+
+/* карточка, которая не подпадает под поиск */
+li.card.disabled {
+  background: lightgray;
+  opacity:    0.3;
+}
+
+/* основной текст внутри карточки */
+.card .cardText {
+  /*display:    block;*/
+  font-size:  4em;
+  text-align: center;
+}
+
+/* основная картинка внутри карточки */
+.card .cardImg {
+  height: 4em;
+  width: auto;
+}
+
+/* номер внутри карточки */
+.card .cardNumber {
+  display:    block;
+  text-align: center;
+}
+
+/* навигация */
+nav {
+  z-index:    10;         /* поверх всего */
+  background: lightgrey;   /* XXX */
+  margin:     3px;
+  padding:    3px;
+}
+
+/* широкий экран (ноутбук, планшет) */
+/* 640 css px = ~ 16.6cm  (https://stackoverflow.com/a/21767407/9456786) */
+@media screen and (min-width: 640px) {
+  nav {
+      position:   fixed;
+      top:        0;
+      right:      0;
+
+      border-radius: 0 0 0 15px;
+
+      opacity:    0.7;
+  }
+
+  nav::before {
+    content: "карточки:";
+  }
+}
+
+/* узкий экран (телефон) */
+@media screen and (max-width: 639px) { /* see ^^^ */
+  nav {
+    /* навигация закреплена наверху окна */
+    position:   sticky;
+    top:        0;
+    left:       0;
+  }
+
+  nav::before {
+    content: "№№:";
+  }
+}
+
+
+
+/* simulate toggle button
+ * https://stackoverflow.com/questions/6238314/any-way-to-keep-an-html-button-pressed */
+button.pressed {
+  border-style: inset;
+}
+
+
+/* показ карточек по одной. Основано на
+ * https://www.w3schools.com/howto/howto_css_modals.asp */
+
+/* фон - затемняет основное содержание */
+.modal {
+  display:    none;   /* hidden initially */
+  position:   fixed;
+  z-index:    1;
+  padding:    50px;
+  /*padding:    0; */
+  /*margin:     auto auto; */
+  left:       0;
+  top:        0;
+  box-sizing: border-box;
+  width:      100%;
+  height:     100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* карточка - заполняет собой 90%x90% экрана */
+.modal-content {
+  background-color: #fefefe;
+  margin:     auto;
+  padding:    50px;
+  height:     90%;
+  width:      90%;
+  border:     1px solid black;
+  position:   relative;
+}
+
+/* крестик "закрыть" */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+    /* чтобы крестик не выделялся как текст */
+    user-select:          none;
+    -moz-user-select:     none;
+    -webkit-user-select:  none;
+    -ms-user-select:      none;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* номер показывемого слайда */
+#slideno {
+    color: #aaaaaa;
+    font-size: 28px;
+    position: absolute;
+    bottom: 5%;
+    right:  5%;
+
+    /* чтобы не выделялся как текст */
+    user-select:          none;
+    -moz-user-select:     none;
+    -webkit-user-select:  none;
+    -ms-user-select:      none;
+}
+
+/* текст карточки */
+#bigCardText {
+  font-size:  20rem;  /* XXX calculate */
+  text-align: center;
+  word-break: break-all;
+  margin:     auto;
+
+  /* чтобы текст случайно не выделялся при щелчке мышкой */
+  user-select:          none;
+  -moz-user-select:     none;
+  -webkit-user-select:  none;
+  -ms-user-select:      none;
+}
+
+/* картинка карточки */
+#bigCardImg {
+  height: 100%;
+  width:  auto;
+  max-height: 100%;
+  max-width:  100%;
+  /* center img */
+  margin:  auto;
+}
