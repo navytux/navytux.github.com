@@ -1,0 +1,9 @@
+Hello World! Hello Navytux!
+===========================
+
+    | home/
+    |     `kirr/`_
+    |     `yarava/`_
+
+.. _kirr/:      ~kirr/
+.. _yarava/:    ~yarava/
