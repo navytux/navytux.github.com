@@ -1,0 +1,16 @@
+Codename: xenial
+Date: Sun, 11 Oct 2020 09:12:20 +0000
+Description: Kirr's packages for Ubuntu 16.04 LTS
+Origin: Kirill Smelkov
+MD5Sum:
+ 8415c1751c38089eff70d6e72cca003c              893 Packages
+ 5b4d5b83ffe93165dd3813671bd7443e             1307 Sources
+SHA1:
+ 8d1c572bb8f559c8dc65801eddef68244ec444a1              893 Packages
+ faaacc431d08f56cd94c1629161f5d71593551af             1307 Sources
+SHA256:
+ 9d35885320b3a3d702bfd0c36942feacda3502007f65772f65c43cc7fa16df91              893 Packages
+ bdb1eb3cea2ba5d28c5f44ac20a81d9ed027bb227d83d856b8e54236c33647be             1307 Sources
+SHA512:
+ 11939f6dd2861f28fa5809089a4d43c19e1ad36f0d90984e1242ddb551cb0501bce6afc8290b03d25b3ddd2abef6325f5e7d3c8f44c0f9e76eb580ee5c333fde              893 Packages
+ b1ba62f26f79c59957f27d0fd9ae18e88e213b77e68eb2c7008f00bb1529a0c50c4c1c2340a71374eb5f4b169405d78c450a70f2a7ad53943db03a6306a6de08             1307 Sources

@@ -1,0 +1,22 @@
+Package: nxd-fuse-dkms
+Architecture: all
+Version: 4.9.nxd3+debian2
+Priority: optional
+Section: kernel
+Source: nxd-fuse
+Maintainer: Kirill Smelkov <kirr@nexedi.com>
+Installed-Size: 288
+Depends: dkms (>= 2.1.0.0)
+Filename: ./nxd-fuse-dkms_4.9.nxd3+debian2_all.deb
+Size: 58884
+MD5sum: dac539342ebcfc0465f18e8f3f88961b
+SHA1: f25d47e658c91deb7bc7f2f423a36d6ea0c73eae
+SHA256: 5e3e795277f7ac50a35aae99d3c1a7b55583a29e6ab3841907a9ddfb9f858879
+SHA512: 4d4fed019b125fa4264835fd38d3b3f6a3bb71937027cc87a32414d568e391fd7e139480f08505fda84f32af09a3685776bc52d623cdf12636c66ec8ea11d96c
+Homepage: https://pypi.org/project/wendelin.core
+Description: dkms source for nxd-fuse kernel module
+ nxd-fuse kernel module provides fuse module functionality with the following
+ additional features backported from recent kernels:
+ .
+  * explicit cache control (git.kernel.org/linus/ad2ba64dd489, Linux 5.2+)
+
