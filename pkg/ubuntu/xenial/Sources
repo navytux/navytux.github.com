@@ -1,0 +1,26 @@
+Package: nxd-fuse
+Format: 3.0 (native)
+Binary: nxd-fuse-dkms
+Architecture: all
+Version: 4.4.nxd3+ubuntu2
+Maintainer: Kirill Smelkov <kirr@nexedi.com>
+Standards-Version: 4.3.0
+Build-Depends: debhelper, dkms
+Homepage: https://pypi.org/project/wendelin.core
+Vcs-Browser: https://lab.nexedi.com/kirr/linux
+Vcs-Git: https://lab.nexedi.com/kirr/linux.git
+Package-List:
+ nxd-fuse-dkms deb kernel optional arch=all
+Files:
+ 6404bc338f24e69906b55ee90799d586 1614 nxd-fuse_4.4.nxd3+ubuntu2.dsc
+ cd0a383bf4c5492e7ba6d55a662db4dd 58328 nxd-fuse_4.4.nxd3+ubuntu2.tar.xz
+Checksums-Sha1:
+ 540eb3ab82e93f8fe12a9150c9de421bd7c4ee9b 1614 nxd-fuse_4.4.nxd3+ubuntu2.dsc
+ e9cd438fc26091a3bfa394257cb8a203fa4317ed 58328 nxd-fuse_4.4.nxd3+ubuntu2.tar.xz
+Checksums-Sha256:
+ 8b555d1a3274e68f5141d5f7be8400a041cb9e9f815eae7b793b5b04b5ee7446 1614 nxd-fuse_4.4.nxd3+ubuntu2.dsc
+ 6de5609bf6d5bbe0bf97307fa560456d620f78631df7b1406d63cc6a13914ee0 58328 nxd-fuse_4.4.nxd3+ubuntu2.tar.xz
+Checksums-Sha512:
+ 51b37607b03baaea738d88af9562f567052b771d1c650eea1d28abfad502a64e5d9fd67440260ebf7fdf3b6e570fc4bd781f1a29b6bab58bbf502502e7c3d6c7 1614 nxd-fuse_4.4.nxd3+ubuntu2.dsc
+ 98f99f95de12a06ebabf347be34ef188ff0cf228eeafa951a3a547a3d4e95bd3ab3f5884fde89d9592a07785a16bed059b38337b01f15fd77ffe497a02c39c98 58328 nxd-fuse_4.4.nxd3+ubuntu2.tar.xz
+

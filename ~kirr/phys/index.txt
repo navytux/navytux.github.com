@@ -1,0 +1,17 @@
+=====================
+`Материалы по физике`
+=====================
+
+.. .. math:: \tilde f(k) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} e^{ikt}f(t) dt\ \ \ \ \ .\ .\ .
+.. .. math:: \hat H\psi = E\psi  i\hbar\frac{\partial\psi}{\partial t} \oint z  \alpha \beta
+
+.. math:: \left(-\frac{\hbar^2}{2m}\nabla^2 + V\right) \psi(\vec r,t) = i\hbar\frac{\partial}{\partial t} \psi(\vec r,t)\ \ \ ...
+
+- `дипломная работа магистра`_
+- `дипломная работа бакалавра`_
+
+TBD...
+
+
+.. _`дипломная работа магистра`:    kirr_thesis_ma.pdf
+.. _`дипломная работа бакалавра`:   kirr_thesis_ba.pdf

@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
+<title>Вопросы к текстам</title>
+<meta name="author" content="© 2012-2018 Варвара Подтакуй, CC BY-SA 3.0" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="id1">
+<h1 class="title">Вопросы к текстам</h1>
+<h2 class="subtitle" id="id2">Вопросы по текстам к учебнику <cite>&quot;Практический курс китайского языка&quot;</cite> под ред. А.Ф. Кондрашевского</h2>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Автор:</th>
+<td>© 2012-2018 Варвара Подтакуй, <a class="last reference internal" href="#id28"><object class="align-middle" data="x-cc-by-sa.svg" style="width: 5em; height: 1.0em;" type="image/svg+xml">CC BY-SA 3.0</object></a></td></tr>
+</tbody>
+</table>
+<div class="contents topic" id="id3">
+<p class="topic-title first">Содержание</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id4" id="id29">第13课</a></li>
+<li><a class="reference internal" href="#id5" id="id30">第14课</a></li>
+<li><a class="reference internal" href="#id6" id="id31">第15课</a></li>
+<li><a class="reference internal" href="#id7" id="id32">第16课</a></li>
+<li><a class="reference internal" href="#id8" id="id33">第17课</a></li>
+<li><a class="reference internal" href="#id9" id="id34">第18课</a></li>
+<li><a class="reference internal" href="#id10" id="id35">第19课</a></li>
+<li><a class="reference internal" href="#id11" id="id36">第20课</a></li>
+<li><a class="reference internal" href="#id12" id="id37">第21课</a></li>
+<li><a class="reference internal" href="#id13" id="id38">第22课</a></li>
+<li><a class="reference internal" href="#id14" id="id39">第23课</a></li>
+<li><a class="reference internal" href="#id15" id="id40">第24课</a></li>
+<li><a class="reference internal" href="#id16" id="id41">第25课</a></li>
+<li><a class="reference internal" href="#id17" id="id42">第26课(2)</a></li>
+<li><a class="reference internal" href="#id18" id="id43">第28课</a></li>
+<li><a class="reference internal" href="#id19" id="id44">第29课</a></li>
+<li><a class="reference internal" href="#id20" id="id45">第30课</a></li>
+<li><a class="reference internal" href="#id21" id="id46">第31课</a><ul>
+<li><a class="reference internal" href="#id22" id="id47">在中国民航的飞机上</a></li>
+<li><a class="reference internal" href="#id23" id="id48">在首都国际机场</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id24" id="id49">第31(2)课</a></li>
+<li><a class="reference internal" href="#id25" id="id50">第32(2)课</a></li>
+<li><a class="reference internal" href="#id26" id="id51">第33课(2)</a></li>
+<li><a class="reference internal" href="#id27" id="id52">第34课</a></li>
+<li><a class="reference internal" href="#id28" id="id53">Условия использования и распространения</a></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h1><a class="toc-backref" href="#id29">第13课</a></h1>
+<ol class="arabic simple">
+<li>丁云是不是中国人？</li>
+<li>安德烈认识不认识丁云？</li>
+<li>玛沙认识不认识丁云？</li>
+<li>丁云去哪儿？</li>
+<li>玛沙和安德烈去哪儿？</li>
+<li>丁云去买什么？</li>
+<li>玛沙和安德烈去买什么？</li>
+<li>谁给安德烈介绍丁云？</li>
+<li>谁给丁云介绍安德烈？</li>
+<li>安德烈是不是玛沙的男朋友？</li>
+<li>丁云是玛沙的哪国朋友？</li>
+<li>安德烈学习什么？</li>
+<li>玛沙学习什么？</li>
+<li>安德烈常说汉语吗？</li>
+</ol>
+<ol class="arabic simple">
+<li>玛沙。。。安德烈：“你认识丁云。。。？”</li>
+<li>安德烈。。。：“。。。认识。”</li>
+<li>玛沙说：“你。。。，那。。。丁云，。。。我介绍。。。”</li>
+<li>“。。。丁云，你。。。一下儿”</li>
+<li>这是安德烈——。。。，这是丁云——。。。</li>
+<li>安德烈说。。。：“你好”</li>
+<li>丁云。。。他：“你。。。学习汉语。。。？”</li>
+<li>我和玛沙。。。学习汉语。我们的。。。老师。。。王，</li>
+<li>你认识。。。？</li>
+<li>“。。。”丁云说“。。。老师。。。去宿舍。。。我们。”</li>
+<li>“你学习。。。。？”安德烈。。。她。</li>
+<li>“我。。。学习。。。和。。。”</li>
+<li>玛沙。。。丁云：“你现在。。。不。。。？”</li>
+<li>“我。。。忙。你爸爸、妈妈。。。吗？”</li>
+<li>“。。。。你，他们。。。很好。”玛沙。。。</li>
+</ol>
+</div>
+<div class="section" id="id5">
+<h1><a class="toc-backref" href="#id30">第14课</a></h1>
+<ol class="arabic simple">
+<li>丁云想不想家？她想谁?</li>
+<li>丁云想不想她的男朋友?</li>
+<li>丁云的男朋友做什么工作？</li>
+<li>丁云的家有谁？</li>
+<li>丁云的姐姐在哪儿工作？</li>
+<li>她姐姐的爱人在哪儿工作？</li>
+<li>丁云的姐姐有没有孩子？</li>
+<li>谁常常给丁云写信？丁云常常给谁写信?</li>
+<li>丁云告诉他姐姐什么？</li>
+<li>谁问谁好？</li>
+</ol>
+<ol class="arabic simple">
+<li>玛沙家有谁？</li>
+<li>玛沙的爸爸做什么工作？ 他在哪儿工作？</li>
+<li>玛沙的妈妈做什么工作？</li>
+<li>玛沙的爸爸、妈妈忙不忙？</li>
+<li>玛沙有没有兄弟姐妹？</li>
+<li>玛沙的哥哥做什么工作？他住在哪儿？</li>
+<li>玛沙的朋友认识不认识玛沙的哥哥？</li>
+<li>玛沙哥哥的爱人现在有没有工作？</li>
+<li>玛沙的哥哥和他的爱人有没有孩子？</li>
+<li>他们的孩子叫什么？</li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h1><a class="toc-backref" href="#id31">第15课</a></h1>
+<ol class="arabic simple">
+<li>他们学院有几个系？</li>
+<li>她在什么系学习？她学习什么？</li>
+<li>他们班有几个学生？</li>
+<li>有几个男学生？几个女学生？</li>
+<li>中国老师教他们什么？</li>
+<li>他们系有几个阅览室？</li>
+<li>他们常在阅览室看什么？</li>
+<li>他们学院还有什么？</li>
+<li>他们常去哪儿借中文书？</li>
+<li>中国老师常给他们介绍什么？</li>
+<li>他们学院有没有宿舍？</li>
+<li>她在哪儿住？</li>
+<li>她的好朋友叫什么名字？</li>
+<li>她的朋友住在哪儿？</li>
+<li>谁在一个班学习？</li>
+</ol>
+</div>
+<div class="section" id="id7">
+<h1><a class="toc-backref" href="#id32">第16课</a></h1>
+<ol class="arabic simple">
+<li>玛沙问妈妈什么？</li>
+<li>玛沙要去哪儿？</li>
+<li>谁给他们京剧票？给了几张？</li>
+<li>玛沙和谁去看京剧？</li>
+<li>晚上他们从哪儿去剧场？</li>
+<li>妈沙穿什么衣服去剧场？</li>
+<li>安德烈穿什么衣服去剧场？</li>
+<li>他们的衣服是不是新的？</li>
+<li>中国老师常给他们介绍什么？</li>
+<li>他们学院有没有宿舍？</li>
+<li>她在哪儿住？</li>
+<li>她的好朋友叫什么名字？</li>
+<li>她的朋友住在哪儿？</li>
+<li>谁在一个班学习？</li>
+</ol>
+</div>
+<div class="section" id="id8">
+<h1><a class="toc-backref" href="#id33">第17课</a></h1>
+<ol class="arabic simple">
+<li>安德烈从哪儿来？</li>
+<li>现在几点？</li>
+<li>安德烈几点上课？</li>
+<li>安德烈几点下课？</li>
+<li>下课以后，安德烈有事儿吗？</li>
+<li>下课以后他做什么？</li>
+<li>晚上安德烈去哪儿？</li>
+<li>安德烈跟谁一起去？</li>
+<li>他们去看几点的电影？</li>
+<li>玛沙去不去看电影？</li>
+<li>下课以后玛沙请安德烈去哪儿？</li>
+<li>他们几点见面？</li>
+<li>玛沙跟谁一起去？</li>
+<li>他们坐车去还是走路去？</li>
+</ol>
+<ol class="arabic simple">
+<li>尼古拉是。。。的好朋友。</li>
+<li>他也学习。。。</li>
+<li>他。。。安德烈。。。一个班。</li>
+<li>他们常常。。。去看电影。</li>
+<li>今天有一个。。。电影，是。。。的。</li>
+<li>尼古拉晚上。。。事儿，他。。。安德烈。。。电影。</li>
+<li>。。。点他。。。电影院。。。电影票。</li>
+<li>。。。点。。。他。。。车去宿舍。。。安德烈，他不在。</li>
+<li>安德烈今天。。。课，他很。。。</li>
+<li>。。。点。。。他去食堂，。。。点。。。他还有。。。课。</li>
+<li>玛沙差。。。点。。。来找他。</li>
+<li>下午。。。点。。。他。。。丁云。。。去咖啡馆。</li>
+<li>安德烈说，现在我。。。上课，。。。点。。。再见。</li>
+</ol>
+</div>
+<div class="section" id="id9">
+<h1><a class="toc-backref" href="#id34">第18课</a></h1>
+<ol class="arabic simple">
+<li>丁云是哪个系的学生？</li>
+<li>她从哪儿来这儿学习？</li>
+<li>他们系有几个中国留学生？他们都住在哪儿？</li>
+<li>丁云几点起床？</li>
+<li>起床以后她做什么？</li>
+<li>她几点去学院？她走路去学院吗？</li>
+<li>她几点上课，几点下课？</li>
+<li>下课以后她去哪儿？</li>
+<li>她在学生食堂认识了谁？</li>
+<li>下午丁云有没有课？她做什么？</li>
+<li>丁云几点去阅览室？她去阅览室看什么？</li>
+<li>丁云去朋友家做什么，她去老师那儿做什么？</li>
+<li>朋友们来不来丁云的家？</li>
+<li>晚上她在哪儿学习？晚上她有时候做什么？</li>
+<li>晚上她几点睡觉？</li>
+</ol>
+</div>
+<div class="section" id="id10">
+<h1><a class="toc-backref" href="#id35">第19课</a></h1>
+<ol class="arabic simple">
+<li>安德烈喜欢什么音乐？玛沙呢？</li>
+<li>他们几点去丁云的宿舍？</li>
+<li>他们去宿舍做什么？</li>
+<li>丁云的唱片多不多？</li>
+<li>她有什么唱片？</li>
+<li>丁云请他们喝什么？</li>
+<li>安德烈要什么茶？</li>
+<li>玛沙要什么茶？</li>
+<li>安德烈和玛沙都喜欢什么？</li>
+<li>安德烈和玛沙听到的中国民歌叫什么名字？</li>
+<li>为什么玛沙请丁云教他们唱那个歌儿？</li>
+<li>丁云同意教他们那个歌儿吗？</li>
+</ol>
+</div>
+<div class="section" id="id11">
+<h1><a class="toc-backref" href="#id36">第20课</a></h1>
+<ol class="arabic simple">
+<li>丁云给谁写信？</li>
+<li>丁云忙不忙？她上午做什么？ 下午做什么？</li>
+<li>她星期几有语法课？</li>
+<li>她星期几有口语课？</li>
+<li>她星期几有历史课？</li>
+<li>她常常去哪儿看画报和杂志？</li>
+<li>她星期几有空儿？</li>
+<li>学院的老师和同学们怎么样？（好不好？）</li>
+<li>她有几个朋友？谁是她的新朋友？</li>
+<li>她新朋友今年多大？她朋友是哪个学院的学生？</li>
+<li>她朋友的爸爸是谁？她朋友的妈妈是谁？</li>
+<li>她朋友的生日是星期几？她请谁参加生日舞会？</li>
+<li>丁云问谁好？丁云祝她家里的人什么？</li>
+<li><ul class="first">
+<li>哪一年几月几号丁云写了这封信？</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="id12">
+<h1><a class="toc-backref" href="#id37">第21课</a></h1>
+<ol class="arabic simple">
+<li>他们星期几去王老师那儿？</li>
+<li>王老师请他们看什么？</li>
+<li>王老师是哪个学院的老师？</li>
+<li>他教谁汉语？他常在哪儿工作？</li>
+<li>王老师今年多大？他爱人今年多大？</li>
+<li>王老师的爱人在哪儿工作？</li>
+<li>王老师和他的爱人有没有孩子？有几个孩子？</li>
+<li>王老师的儿子叫什么名字？他今年多大？</li>
+<li>他在哪儿学习？他学得好不好？</li>
+<li>王老师的女儿叫什么名字？她今年几岁？</li>
+<li>她像她妈妈还是像她爸爸？</li>
+<li>王老师一家人的照片上，他的女儿穿什么衣服？</li>
+<li>几月几号是王老师女儿的生日？</li>
+<li>王老师怎么祝贺她？</li>
+</ol>
+</div>
+<div class="section" id="id13">
+<h1><a class="toc-backref" href="#id38">第22课</a></h1>
+<ol class="arabic simple">
+<li>玛沙请谁看看她的新房子？</li>
+<li>玛沙的客厅大不大，漂亮不漂亮？</li>
+<li>客厅旁边是什么？</li>
+<li>书房里边有没有椅子？</li>
+<li>书房的书多不多？书房的书都是谁的书？</li>
+<li>玛沙的爸爸让不让他家里的人整理他的书？</li>
+<li>新房子的厨房在哪儿？厨房大不大？</li>
+<li>玛沙帮助她妈妈做饭吗？</li>
+<li>а)他们的餐厅在哪儿？б)小花园在哪儿？с)玛沙的卧室在哪儿？</li>
+<li>玛沙的新房子怎么样？</li>
+</ol>
+<ol class="arabic simple">
+<li>学生城里边有几个宿舍？</li>
+<li>安德烈和丁云住在哪儿？</li>
+<li>他们去看什么？</li>
+<li>安德烈的宿舍在几层多少号？</li>
+<li>他跟谁一起住？</li>
+<li>他们的房间大不大？</li>
+<li>门对面是什么？窗户旁边有什么？</li>
+<li>左边的床是谁的？右边的床是谁的？</li>
+<li>他们的桌子在哪儿？桌子后边有什么？</li>
+<li>房间里边还有什么？</li>
+<li>安德烈说他的房间干净不干净？为什么？</li>
+<li>他们起床以后去哪儿？</li>
+<li>下课以后他们去哪儿？</li>
+<li>晚上常常几点回宿舍睡觉？</li>
+<li>安德烈什么时候整理他的房间？ 为什么？</li>
+</ol>
+</div>
+<div class="section" id="id14">
+<h1><a class="toc-backref" href="#id39">第23课</a></h1>
+<ol class="arabic simple">
+<li>玛沙去找丁云的时候，丁云正在做什么呢？</li>
+<li>丁云看的报纸叫什么名字？</li>
+<li>报纸上有什么新闻？</li>
+<li>一个友好代表团在哪一个国家访问？</li>
+<li>丁云给玛沙介绍的新闻旁边有什么？</li>
+<li>那条新闻是几月几号的？</li>
+<li>那个代表团参观什么？</li>
+<li>报纸上有几张照片？</li>
+<li>左边的照片是什么照片？</li>
+<li>右边的照片是什么照片？</li>
+<li>中间的照片是什么照片？</li>
+<li>那张报有意思吗？</li>
+<li>玛沙的妈妈为什么一定会喜欢这条新闻？</li>
+<li>丁云给了玛沙这张报吗？</li>
+</ol>
+</div>
+<div class="section" id="id15">
+<h1><a class="toc-backref" href="#id40">第24课</a></h1>
+<ol class="arabic simple">
+<li>安德烈的家在哪儿？他家有几口人？他家里有谁？他的父母是谁？安娜是谁？</li>
+<li>安娜坐什么车去学生城？她去学生城做什么？</li>
+<li>安娜认识不认识安德烈的宿舍？他知不知道要去哪儿？谁来帮助她？这个人正在做什么呢？</li>
+<li>安德烈的宿舍是几号？</li>
+<li>安娜进宿舍的时候，安德烈正在做什么呢？</li>
+<li>安德烈知不知道今天安娜要来？</li>
+<li>安娜带来了什么？是谁做的？是给谁做的？</li>
+<li>安德烈让安娜回家的时候一定要做什么？</li>
+<li>安娜在安德烈的宿舍看了什么？</li>
+<li>安娜觉得汉语难不难？安德烈告诉安娜汉字和语法难不难？他喜欢做什么？</li>
+<li>安德烈现在忙不忙？他每天都做什么，晚上做什么？他几点睡觉？</li>
+<li>安德烈的中国老师叫什么？上课的时候这位老师认真不认真？</li>
+<li>上课的时候老师常常问学生什么？</li>
+<li>下课以后学生们常常跟谁说汉语？</li>
+<li>下课以后学生们常常去哪儿玩儿？</li>
+</ol>
+</div>
+<div class="section" id="id16">
+<h1><a class="toc-backref" href="#id41">第25课</a></h1>
+<ol class="arabic simple">
+<li>安德烈、玛沙和丁云去哪儿了？</li>
+<li>他们在哪儿停车？</li>
+<li>谁去游泳？谁去做饭？谁去钓鱼？</li>
+<li>中国人吃汤还是喝汤？</li>
+<li>谁游泳游得很快？</li>
+<li>丁云游得快还是游得慢？</li>
+<li>玛沙游得怎么样？谁是玛沙的游泳教练？他教得怎么样、好不好？</li>
+<li>安德烈做饭做得怎么样？</li>
+<li>做饭的人做什么汤？他做得怎么样？</li>
+<li>安德烈请丁云吃什么？</li>
+<li>玛沙要吃什么？</li>
+<li>丁云要喝什么？</li>
+</ol>
+<ol class="arabic simple">
+<li>几月几号星期几安德烈去王老师那儿？</li>
+<li>安德烈跟谁一起去王老师那儿？</li>
+<li>他们来王老师家，王老师正在做什么呢？</li>
+<li>王老师看见他的学生来高兴不高兴？</li>
+<li>王老师问学生哪些问题？</li>
+<li>学生们告诉老师，他们现在学的课文难不难、生词多不多、他们忙不忙？</li>
+<li>王老师说，这学期同学们学得怎么样？认真不认真？</li>
+<li>三个同学学习，他们每个人哪一方面好？</li>
+<li>谁汉字写得很清楚？上课谁问题回答得很对？</li>
+<li>谁语法学得很好？谁汉语说得很流利？</li>
+<li>除了学习以外，王老师问同学们什么？</li>
+<li>玛沙常锻炼身体吗？</li>
+<li>安德烈几点睡觉？尼古拉呢？</li>
+<li>王老师觉得他们睡得晚不晚？</li>
+<li>几点同学们要走？王老师让不让他们走？</li>
+<li>王老师请他们在哪儿吃饭？</li>
+<li>他们吃了什么？他们吃得多不多？</li>
+<li>谁做饭？</li>
+</ol>
+</div>
+<div class="section" id="id17">
+<h1><a class="toc-backref" href="#id42">第26课(2)</a></h1>
+<ol class="arabic simple">
+<li>什么时候学生准备跟别的学生联欢？</li>
+<li>哪个系的学生要跟哪个国家的学生联欢？</li>
+<li>安德烈和玛沙的同学都知道，安德烈和玛沙喜欢什么音乐？</li>
+<li>同学们让安德烈和玛沙怎么准备参加联欢？</li>
+<li>安德烈和玛沙请谁帮助他们好好地准备参加联欢？</li>
+<li>丁云给他们介绍哪个歌儿？</li>
+<li>那个歌儿是什么样的歌儿？容易不容易？</li>
+<li>丁云有没有那个歌儿的唱片?</li>
+<li>安德烈和玛沙觉得那个歌儿好听不好听？</li>
+<li>丁云觉得他们能唱得怎么样？</li>
+</ol>
+</div>
+<div class="section" id="id18">
+<h1><a class="toc-backref" href="#id43">第28课</a></h1>
+<ol class="arabic simple">
+<li>今天几月几号？ 星期几？</li>
+<li>帕兰卡来找谁？她去哪儿？</li>
+<li>上午他做了什么？去哪儿了？</li>
+<li>吃午饭的时候，他的朋友问他什么？</li>
+<li>他朋友知不知道他很喜欢看足球比赛？</li>
+<li>以前体育场有足球赛的时候，谁去看？</li>
+<li>他想不想去看足球赛？能不能去？ 为什么？</li>
+<li>谁给了他朋友票？给了几张？</li>
+<li>他同意不同意去？要不要去买票？</li>
+<li>吃午饭以后，他们是怎么去体育场的？</li>
+<li>他们到了体育场的时候，看见了什么? 人多不多？</li>
+<li>他们从哪个门进去体育场？</li>
+<li>比赛几点开始？</li>
+</ol>
+<ol class="arabic simple">
+<li>今天谁跟谁赛？</li>
+<li>这两个足球队有名吗？</li>
+<li>比里觉得哪个队能赢？</li>
+<li>说话的人觉得哪个队能赢？</li>
+<li>那两个队踢得怎么样？</li>
+<li>哪个队进了第一个球？几点进的？</li>
+<li>那个球踢得怎么样？</li>
+<li>哪个队踢了第二个球？</li>
+<li>那时候，两个队几比几？</li>
+<li>十分钟以后哪个队又进了一个球？</li>
+<li>裁判说这个球算不算？</li>
+<li>还有三分钟的时候，哪个队又进了一个球？</li>
+<li>谁赢了？谁输了？几比几？</li>
+</ol>
+</div>
+<div class="section" id="id19">
+<h1><a class="toc-backref" href="#id44">第29课</a></h1>
+<ol class="arabic simple">
+<li>飞机上的广播里说的是什么？你自己能不能再说一遍？</li>
+<li>广播里汉语说得清楚不清楚？古波和帕兰卡听懂了吗？</li>
+<li>飞机上人多不多？他们都去哪儿？</li>
+<li>飞机上的服务员请大家吃什么？喝什么？</li>
+<li>飞机上的服务员穿得怎么样？</li>
+<li>飞机上的服务员工作得怎么样？她们会说什么语言？</li>
+<li>古波和帕兰卡跟他们说什么语言？</li>
+<li>几点服务员请大家吃午饭？</li>
+<li>飞机上的午饭有什么？菜做得好不好？帕兰卡和古波喜欢不喜欢吃？</li>
+<li>吃完午饭，故波和帕兰卡要喝什么？古波要喝咖啡还是要喝茶？为什么？</li>
+<li>帕兰卡和古波汉语说得怎么样？</li>
+<li>飞机上的服务员知道了古波和帕兰卡是两位去中国的留学生，对他们说什么？</li>
+</ol>
+<ol class="arabic simple">
+<li>飞机上的广播里说的是什么？你自己能不能再说一遍？</li>
+<li>广播里汉语说得清楚不清楚？安德烈和玛沙听懂了吗？</li>
+<li>飞机上人多不多？他们都去哪儿？</li>
+<li>飞机上的服务员请大家吃什么？喝什么？</li>
+<li>飞机上的服务员穿得怎么样？</li>
+<li>飞机上的服务员工作得怎么样？她们会说什么语言？</li>
+<li>安德烈和玛沙跟他们说什么语言？</li>
+<li>几点服务员请大家吃午饭？</li>
+<li>飞机上的午饭有什么？菜做得好不好？安德烈和玛沙喜欢不喜欢吃？</li>
+<li>吃完午饭，安德烈和玛沙要喝什么？安德烈要喝咖啡还是要喝茶？为什么？</li>
+<li>安德烈和玛沙汉语说得怎么样？</li>
+<li>飞机上的服务员知道了安德烈和玛沙是两位去中国的留学生，对他们说什么？</li>
+</ol>
+</div>
+<div class="section" id="id20">
+<h1><a class="toc-backref" href="#id45">第30课</a></h1>
+<ol class="arabic simple">
+<li>玛沙走了，波波夫太太心里怎么样？</li>
+<li>谁请丁云坐汽车送到学生宿舍？</li>
+<li>在车上丁云说什么？</li>
+<li>今天晚上玛沙就要到北京了，丁云想她现在高兴不高兴？</li>
+<li>波波夫先生说：“女儿很高兴的时候，妈妈也高兴吗？”</li>
+<li>在车上波波夫太太问丁云什么问题？</li>
+<li>去年丁云来俄罗斯的时候，她妈妈愿意丁云离开她吗？最开始她心里怎么样？ 以后呢？</li>
+<li>丁云的妈妈什么时候哭了？</li>
+<li>这儿离北京很远， 丁云的妈妈放心吗？为什么？</li>
+<li>丁云常给妈妈写信吗？告诉她什么？</li>
+<li>这儿的老师和同学们对丁云怎么样，她在这儿过得好不好？</li>
+<li>谁是丁云的好朋友？</li>
+<li>为什么丁云觉得玛沙就像她的妹妹，玛沙的家就像丁云自己的家？</li>
+<li>昨天丁云又给妈妈写了一封信，告诉妈妈什么？</li>
+<li>波波夫先生说什么，让波波夫太太笑？</li>
+</ol>
+</div>
+<div class="section" id="id21">
+<h1><a class="toc-backref" href="#id46">第31课</a></h1>
+<div class="section" id="id22">
+<h2><a class="toc-backref" href="#id47">在中国民航的飞机上</a></h2>
+<ol class="arabic simple">
+<li>坐飞机的人是中国人还是美国人？</li>
+<li>古波汉语说得怎么样？说得好不好？</li>
+<li>古波和帕兰卡学了几年的中文了？</li>
+<li>那个人在美国住了多长时间了？</li>
+<li>他常回中国吗？</li>
+<li>哪一年他第一次回国了？ 在中国做了什么？ 去了哪个城市？ 在那儿住了多长时间？</li>
+<li>他在美国做什么工作？他在哪儿工作？工作了已经多长时间了？</li>
+<li>他家里有没有人住在中国？</li>
+<li>他弟弟、妹妹在哪个城市住？</li>
+<li>他弟弟、妹妹为了什么努力工作？</li>
+<li>那个先生这次回国为了什么？</li>
+</ol>
+</div>
+<div class="section" id="id23">
+<h2><a class="toc-backref" href="#id48">在首都国际机场</a></h2>
+<ol class="arabic simple">
+<li>在首都国际机场谁来了接古波和帕兰卡？</li>
+<li>古波和帕兰卡去中国哪一个学院学习？</li>
+<li>古波和帕兰卡坐了几个小时的飞机？</li>
+<li>他们办了手续没有？</li>
+<li>北京的天气怎么样？</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id24">
+<h1><a class="toc-backref" href="#id49">第31(2)课</a></h1>
+<ol class="arabic simple">
+<li>那个小孩子去哪儿？</li>
+<li>他去那儿干什么？</li>
+<li>他坐什么车去？</li>
+<li>他叫什么名字？</li>
+<li>他今年几岁了？</li>
+<li>他会做什么？</li>
+<li>他学了多长时间的小提琴？</li>
+<li>他的家在哪儿？</li>
+<li>他跟爸爸妈妈一起去北京吗？</li>
+<li>他在北京有没有认识的人？</li>
+<li>他爸爸做什么工作？</li>
+<li>他妈妈做什么工作？</li>
+<li>他们工作忙不忙？</li>
+<li>那位老先生怎么帮助他？</li>
+<li>那位老先生是谁？</li>
+</ol>
+</div>
+<div class="section" id="id25">
+<h1><a class="toc-backref" href="#id50">第32(2)课</a></h1>
+<ol class="arabic simple">
+<li>那个人是哪国人？</li>
+<li>他以前来过中国没有？</li>
+<li>这是他来中国的第几次？</li>
+<li>他在哪儿开始学习汉语？</li>
+<li>他在哪儿认识了一位华侨？</li>
+<li>谁教他说中国话？</li>
+<li>他还在哪儿学习？</li>
+<li>他的朋友觉得汉语难不难？</li>
+<li>他在哪儿认识了中国留学生？</li>
+<li>他学习汉语的进步怎么样？ 为什么？</li>
+<li>他学习汉语已经学了多长时间？</li>
+<li>他希望以后能研究什么？</li>
+<li>他学了几年的中文以后，他已经会做什么？</li>
+<li>现在他在北京已经多长时间了？</li>
+<li>他的同屋是谁？</li>
+<li>他的同屋学习什么？</li>
+<li>他跟他的同屋是不是朋友？</li>
+<li>学校里每个星期有几次中国电影？</li>
+<li>他已经看过几次中国电影？</li>
+<li>今天晚上谁想去看电影？</li>
+</ol>
+</div>
+<div class="section" id="id26">
+<h1><a class="toc-backref" href="#id51">第33课(2)</a></h1>
+<ol class="arabic simple">
+<li>北京一年有几个季节？有什么季节？</li>
+<li>北京的哪一个季节时间最长？</li>
+<li>北京的冬天天气怎么样？</li>
+<li>北京的冬天最冷的时候到过零下多少度？</li>
+<li>冬天北京人最喜欢做什么？</li>
+<li>冬天北京人喜欢在哪儿滑冰？</li>
+<li>第一年玛沙习惯了北京冬天没有？我们怎么知道？</li>
+<li>北京的春天天气怎么样？</li>
+<li>北京的春天为什么人们喜欢去公园玩儿？</li>
+<li>北京的春天时间长不长？</li>
+<li>从几月到几月是北京的夏天？</li>
+<li>北京夏天天气怎么样？</li>
+<li>几月是最热的一个月？</li>
+<li>几月常常下雨？</li>
+<li>北京的夏天大家都喜欢去哪个公园玩儿？他们在那儿喜欢做什么？</li>
+<li>北京的秋天从几月开始？</li>
+<li>北京的秋天天气怎么样？</li>
+<li>十一月份大家都喜欢去哪儿？为什么？</li>
+<li>外国朋友什么时候喜欢到北京来参观？</li>
+<li>哪一个季节是北京最好的季节？</li>
+</ol>
+</div>
+<div class="section" id="id27">
+<h1><a class="toc-backref" href="#id52">第34课</a></h1>
+<ol class="arabic simple">
+<li>那天上午天气怎么样？下午呢？</li>
+<li>帕兰卡跟丁云分别的时候，丁云告诉她什么？</li>
+<li>为什么帕兰卡给丁云的妈妈写了一封信？</li>
+<li>古波也要给谁寄一封信？</li>
+<li>帕兰卡跟古波一起去哪儿了？</li>
+<li>六点邮局的门关了没有？</li>
+<li>邮局里的人都在做什么呢？</li>
+<li>古波和帕兰卡到了一个窗口前边，这个窗口的牌子上写着什么？柜台里放着什么？</li>
+<li>帕兰卡想买什么？</li>
+<li>营业员给帕兰卡介绍什么？</li>
+<li>为什么帕兰卡想买介绍北京的明信片？</li>
+<li>古波要寄平信还是要寄航空挂号信？</li>
+<li>他想到什么城市寄信？</li>
+<li>为什么营业员想古波要到北京寄信？</li>
+<li>古波哪儿做得不对？</li>
+<li>中文信封上边要写什么，下边要写什么？</li>
+<li>营业员指着哪儿告诉古波应该怎么样写信封？</li>
+</ol>
+<!-- FIXME сделать include_path -->
+</div>
+<hr class="docutils" />
+<div class="section" id="id28">
+<h1><a class="toc-backref" href="#id53">Условия использования и распространения</a></h1>
+<div class="admonition admonition-">
+<p class="first admonition-title"></p>
+<p>© 2012-2018 Варвара Подтакуй</p>
+<p>Данное произведение распространяется на условиях лицензии Creative Commons
+Attribution-Share Alike (Атрибуция - С сохранением условий) 3.0 (CC-BY-SA 3.0).
+<cite>Вы можете свободно</cite> <strong>Делиться</strong> (копировать, распространять и передавать
+другим лицам данное произведение) и <strong>Изменять</strong> (создавать производные
+произведения), <cite>при обязательном соблюдении следующих условий</cite>:</p>
+<dl class="last docutils">
+<dt><object data="by.svg" type="image/svg+xml">1.</object> <strong>Атрибуция (Attribution)</strong> —  Вы должны атрибутировать произведение (указывать</dt>
+<dd>автора и источник) в порядке, предусмотренном автором или лицензиаром (но
+только так, чтобы никоим образом не подразумевалось, что они поддерживают вас
+или использование вами данного произведения).</dd>
+<dt><object data="sa.svg" type="image/svg+xml">2.</object> <strong>Сохранение условий (Share Alike)</strong> — Если вы изменяете, преобразуете или</dt>
+<dd>берёте за основу это произведение, вы можете распространять результат только по
+такой же или подобной лицензии, что и у данного произведения.</dd>
+</dl>
+</div>
+<!-- XXX width 5em сделано чтобы обойти неправильную отрисовку SVG в chromium -->
+</div>
+</div>
+</body>
+</html>
