@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Принципы построения информационной шины данных Интегрированных Мостиковых Систем</title>
+<meta name="authors" content="К. В. Смелков П. Г. Фёдоров  ЗАО &quot;Морские Навигационные Системы&quot;" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id$
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="id1">
+<h1 class="title">Принципы построения информационной шины данных Интегрированных Мостиковых Систем</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Авторы:</th>
+<td>К. В. Смелков П. Г. Фёдоров
+<br />ЗАО &quot;Морские Навигационные Системы&quot;</td></tr>
+</tbody>
+</table>
+<!--  -->
+<blockquote>
+( Статья была опубликована в мартовском номере журнала Морской Вестник
+№1(21) в 2007 году. )</blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<!-- введение -->
+<p>В настоящее время на ходовых мостиках судов и ходовых командных постах (ХКП)
+кораблей все большее применение находят интегрированные мостиковые системы.</p>
+<p>Использование интегрированных мостиковых систем (ИМС) повышает эффективность
+управления судном (кораблем), снижает массо-габаритные характеристики
+оборудования, обеспечивает улучшение эргономики рабочих мест и общего дизайна
+помещения ходового мостика (ХКП).</p>
+<p>Использование в составе ИМС унифицированных аппаратных средств повышает
+надежность системы, а также снижает затраты на ее изготовление и обслуживание.</p>
+<p>Внешний вид ИМС показан на рис.1.</p>
+<!-- .. figure:: pics/imc1.jpg -->
+<div class="figure align-center">
+<img alt="misc/IBS.jpg" src="misc/IBS.jpg" style="width: 707px;" />
+<p class="caption"><strong>Рис.1.</strong> Интегрированная мостиковая система</p>
+</div>
+<p>ИМС, разрабатываемые и изготавливаемые для кораблей, существенно отличаются от
+ИМС, поставляемых на гражданские суда.</p>
+<p>Это связано с необходимостью обеспечения гораздо большего количества функций,
+сопряжения с большим количеством оборудования с использованием различных
+протоколов связи, в том числе нестандартных.</p>
+<p>В данной статье рассматриваются принципы построения информационной шины данных
+корабельных интегрированных мостиковых систем.</p>
+<p>Интегрированная Мостиковая Система представляет собой открытую, распределённую,
+адаптивную вычислительную систему, построенную на базе современных
+вычислительных средств, объединённых в единую информационную локальную сеть.</p>
+<p>На рис. 2 показана структурная схема ИМС.</p>
+<div class="figure align-center">
+<img alt="pics/_ibs.png" src="pics/_ibs.png" />
+<p class="caption"><strong>Рис.2.</strong> Типичная структурная схема ИМС</p>
+</div>
+<p>Сопряжение с установленным на корабле навигационным вооружением и другими
+системами осуществляется по (преимущественно) цифровым и аналоговым каналам
+связи. Кроме того ИМС обеспечивает приём и отображение первичной
+радиолокационной информации от навигационных РЛС корабля.</p>
+<!-- В типовой конфигурации в ИМС предусматриваются три автоматизированных рабочих -->
+<!-- места (АРМ): командира корабля и вахтенного офицера в ГКП, штурмана в -->
+<!-- штурманской рубке. -->
+<p>В типовой конфигурации в ИМС предусматриваются два автоматизированных рабочих
+места (АРМ): командира корабля и вахтенного офицера.</p>
+<p>Обмен информацией внутри системы осуществляется по локальной вычислительной
+сети Ethernet.</p>
+<div class="section" id="id2">
+<h1>1&nbsp;&nbsp;&nbsp;Основные функции ИМС</h1>
+<p>ИМС обеспечивает решение следующих задач:</p>
+<ol class="arabic simple">
+<li>Сбор и обработку информации от технических средств корабля, в т.ч. не имеющих
+унифицированных цифровых информационных выходов.</li>
+<li>Создание на основе собранной информации единого информационного поля данных.</li>
+<li>Распределение информации и её вывод на средства отображения для обеспечения
+выполнения должностными лицами своих функциональных обязанностей.</li>
+<li>Осуществление судовождения и обеспечение навигационной безопасности плавания.</li>
+<li>Управление, в т.ч. с помощью графического пользовательского интерфейса
+отдельными системами и устройствами судна.</li>
+</ol>
+<!-- 6. Управление средствами судовой связи, в т.ч. ГМССБ радиосвязи. -->
+<p>Отображаемая на АРМ информация:</p>
+<ul class="simple">
+<li>Первичная и вторичная радиолокационная информация.</li>
+<li>Время, координаты, курс, путевой угол, скорость, глубина под килем, параметры качки.</li>
+<li>Электронная навигационная карта с траекторией пути судна.</li>
+<li>Информация от АИС.</li>
+<li>Телевизионное изображение от систем видеонаблюдения.</li>
+<li>Метеорологические данные.</li>
+<li>Длина вытравленной якорной цепи.</li>
+<li>Состояние сигнально-отличительных огней.</li>
+<li>Параметры главных двигателей и вспомогательных устройств.</li>
+<li>Параметры судовой электроэнергетической установки.</li>
+<li>Сигнализация: температурно-тревожная, охранная и наличия воды в помещениях.</li>
+<li>Информация от других систем в зависимости от проекта судна.</li>
+</ul>
+<!-- - Информация от приемника Navtex. -->
+</div>
+<div class="section" id="id3">
+<h1>2&nbsp;&nbsp;&nbsp;Сопрягаемые системы</h1>
+<p>ИМС обеспечивает сопряжение со следующими корабельными системами:</p>
+<ul>
+<li><div class="first line-block">
+<div class="line">Навигационный комплекс</div>
+<div class="line">или некомплексированные навигационные приборы, в том числе</div>
+</div>
+<ul class="simple">
+<li>Лаг</li>
+<li>Гирокомпас</li>
+<li>Эхолот</li>
+<li>Приёмоиндикатор СНС &quot;ГЛОНАСС/НАВСТАР&quot;</li>
+<li>Приёмоиндикатор РНС</li>
+</ul>
+</li>
+<li><p class="first">Гидро-Метео комплекс</p>
+</li>
+<li><p class="first">Система единого времени</p>
+</li>
+<li><p class="first">РЛС (видео + формуляры целей)</p>
+</li>
+<li><p class="first">ГАС</p>
+</li>
+<li><p class="first">Комплексная система управления техническими средствами (КСУ-ТС)</p>
+</li>
+<li><p class="first">Оптико-Электронные визиры (оптический канал + управление) и телекамеры</p>
+</li>
+<li><p class="first">Электронное табло навигационных параметров</p>
+</li>
+</ul>
+<p>Типы сопрягаемых интерфейсов:</p>
+<ul class="simple">
+<li>ГОСТ 26765.52-87 / ГОСТ Р 52070-2003 (MIL-STD-1553B)</li>
+<li>RS-422/485</li>
+<li>CAN</li>
+<li>Ethernet</li>
+<li>Видео сигнал от РЛС</li>
+<li>Полноцветные телевизионные сигналы (ГОСТ 7845-92)</li>
+</ul>
+<!-- - (Визиры  - - оптический канал  + управление) -->
+<!-- - (РЛС - - Video/Sync/Bear/Head  + цели) -->
+</div>
+<div class="section" id="id4">
+<h1>3&nbsp;&nbsp;&nbsp;Информационная шина данных ИМС</h1>
+<!-- Информационная шина данных ИМС создавалась как средство унифицированного обмена -->
+<!-- данными внутри ИМС. -->
+<p>Многообразие типов интерфейсов сопряжения, сопрягаемого оборудования,
+протоколов связи (транспортного уровня), приводят к необходимости создания (локальной) подсистемы,
+задачей которой будет унификация распределённого пакетного ввода/вывода между
+ИМС и сопрягаемыми системами.</p>
+<!-- Также, -->
+<p>Многообразие протоколов сопряжения в части структур данных приводит к
+необходимости создания подсистемы, задачей которой будет унификация обработки и
+обмена прикладными данными между ИМС и сопрягаемыми системами.</p>
+<p>Рассмотрим эти задачи по порядку.</p>
+<div class="section" id="id5">
+<h2>3.1&nbsp;&nbsp;&nbsp;Подсистема пакетного ввода/вывода</h2>
+<p>Задача данного уровня состоит в том, чтобы обеспечить унифицированный
+пакетный ввод/вывод в многомашинном комплексе.</p>
+<p>Реализована следующая схема:</p>
+<ol class="arabic">
+<li><p class="first">Вводится именование точек ввода/вывода по следующему правилу:</p>
+<pre class="literal-block">
+//&lt;УЗЕЛ&gt;/&lt;ТИП_ИНТЕРФЕЙСА&gt;/&lt;УСТРОЙСТВО&gt;:(tx|rx)
+</pre>
+<p>где</p>
+<dl class="docutils">
+<dt>УЗЕЛ</dt>
+<dd><p class="first last">идентификатор вычислителя в комплексе</p>
+</dd>
+<dt>ТИП_ИНТЕРФЕЙСА</dt>
+<dd><p class="first last">тип интерфейса сопряжения</p>
+</dd>
+<dt>УСТРОЙСТВО</dt>
+<dd><p class="first last">конкретное устройство ввода/вывода,
+возможно с указанием дополнительной информации для устройств
+осуществляющих мультиплексирование</p>
+</dd>
+<dt>tx или rx</dt>
+<dd><p class="first last">направление ввода/вывода относительно ИМС</p>
+</dd>
+</dl>
+<p>например:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">//node1/serial/ttyM0:rx</tt></dt>
+<dd><p class="first last">приёмник последовательного интерфейса <tt class="docutils literal">ttyM0</tt> на первом узле.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">//node3/1553b/tmk0-25.17:tx</span></tt></dt>
+<dd><p class="first last">узел 3, интерфейс MIL-STD-1553B, 17-й подадрес устройства tmk0 в направлении на
+передачу.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">ПО уровня шины данных предоставляет сервис пакетного обмена типа
+<em>публикация/подписка</em> (<em>publish/subscribe</em>),</p>
+<p>а именно:</p>
+<ul class="simple">
+<li>ПО на одном узле может подписаться по имени на поток ввода/вывода</li>
+<li>ПО на другом может опубликовать факт наличия нового пакета на потоке
+ввода/вывода</li>
+</ul>
+<p>Если имя потока подписки и публикации совпадают, внутренний алгоритм
+маршрутизации потоков произведёт доставку пакета подписчику.</p>
+<p>Также работают подписки по т.н. регулярным выражениям <a class="footnote-reference" href="#regexp" id="id6">[1]</a>.</p>
+<div class="figure align-center">
+<img alt="pics/_kio.png" src="pics/_kio.png" />
+<p class="caption"><strong>Рис.3.</strong> Иллюстрация работы publish/subcribe</p>
+</div>
+<p>В качестве транспортного уровня внутренней магистрали используется сеть
+Ethernet и вышестоящие протоколы семейства IP. Максимальный размер пакета -
+8 килобайт.</p>
+</li>
+<li><p class="first">Весь ввод/вывод осуществляемый ИМС осуществляется именно с помощью обмена
+пакетов по внутренней информационной магистрали и с помощью специальных
+программ - агентов ввода/вывода.</p>
+<p>Если узел располагает какими-то устройствами ввода/вывода, то на нём
+постоянно работает специальная программа обеспечивающая стыковку внутренней
+шины с данным устройством.</p>
+<p>Рассмотрим пример последовательных устройств:</p>
+<p>Пусть узел-1 располагает 8 последовательными устройствами: <tt class="docutils literal">ttyM0</tt> - <tt class="docutils literal">ttyM7</tt>,
+тогда</p>
+<ul class="simple">
+<li>все присвоения именам из диапазона <tt class="docutils literal"><span class="pre">//node1/serial/ttyM[0-7]:tx</span></tt>  &lt;-- pkt
+на любом узле, приведут к передаче пакета на соответствующее устройство узла-1</li>
+<li>все принятые агентом ввода/вывода пакеты с физического интерфейса, будут
+ретранслированы на внутреннюю магистраль ИМС под соответствующим именем,
+например <tt class="docutils literal">//node1/serial/ttyM2:rx</tt>.</li>
+</ul>
+</li>
+</ol>
+<p>Таким образом предложенная схема:</p>
+<ul class="simple">
+<li>позволяет унифицировать ввод/вывод для различных интерфейсов.</li>
+<li>позволяет осуществлять ввод/вывод в многомашинном комплексе, вне зависимости
+от расположения точки ввода/вывода - локальной или удалённой.</li>
+<li>в штатном режиме позволяет осуществлять удалённый мониторинг и отладку всего
+ввода/вывода или некоторой его части (мониторинг всего -- подписка на '.*').</li>
+<li>в штатном режиме позволяет осуществлять протоколирование всего ввода/вывода
+или некоторой его части на внешний носитель.</li>
+<li>с помощью штатного ПО поставляемого с системой позволяет воспроизвести
+записанный ранее ввод/вывод в произвольном темпе.</li>
+<li>масштабируется по отношению к новые типам интерфейсов и увеличению количества
+узлов ИМС.</li>
+<li>также, может быть использована для организации внутренних каналов связи ИМС.</li>
+<li>гибкость системы обеспечивается за счёт отказа от соединений типа точка-точка
+и переходу к шинной архитектуре.</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>3.2&nbsp;&nbsp;&nbsp;Уровень именованных данных</h2>
+<!-- - **TODO** расписать dict/не-dict -->
+<p>Задача данного уровня состоит в том, чтобы унифицировать работу с прикладными
+данными, а также унифицировать преобразование информации между пакетным и
+прикладным уровнями данных.</p>
+<p>Реализована следующая схема:</p>
+<ol class="arabic">
+<li><p class="first">Вводится соглашение о именовании величин.</p>
+<p>А именно, для всех прикладных величин составляется единое правило их
+именования в рамках ИМС. Например:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="67%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Величина</th>
+<th class="head">Имя</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Курс</td>
+<td><cite>hdt</cite></td>
+</tr>
+<tr><td>Путевой угол</td>
+<td><cite>cog</cite></td>
+</tr>
+<tr><td>Широта</td>
+<td><cite>lat</cite></td>
+</tr>
+<tr><td>Долгота</td>
+<td><cite>lon</cite></td>
+</tr>
+<tr><td>Пеленг</td>
+<td><cite>brng</cite></td>
+</tr>
+<tr><td>Угол места</td>
+<td><cite>elev</cite></td>
+</tr>
+<tr><td>Крен</td>
+<td><cite>roll</cite></td>
+</tr>
+<tr><td>Дифферент</td>
+<td><cite>pitch</cite></td>
+</tr>
+</tbody>
+</table>
+<p>и так далее</p>
+</li>
+</ol>
+<!-- /<ДОМЕН>/{<ВЕЛИЧИНА1>, <ВЕЛИЧИНА2>, ...} -->
+<ol class="arabic" start="2">
+<li><p class="first">Вводится пространство имён прикладных данных:</p>
+<pre class="literal-block">
+/&lt;ДОМЕН&gt;/&lt;ВЕЛИЧИНА&gt;
+</pre>
+<p>где</p>
+<dl class="docutils">
+<dt>ДОМЕН</dt>
+<dd><p class="first last">наименование прибора или сопрягаемой системы</p>
+</dd>
+<dt>ВЕЛИЧИНА</dt>
+<dd><p class="first last">наименование одного из параметров вырабатываемого сопрягаемой системой</p>
+</dd>
+</dl>
+<p>например:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">/КОМПАС/hdt</tt></dt>
+<dd><p class="first last">курс корабля выработанный компасом</p>
+</dd>
+<dt><tt class="docutils literal">/НАВ.КОМПЛЕКС/hdt</tt></dt>
+<dd><p class="first last">курс корабля выработанный корабельным навигационным комплексом</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">ПО уровня именованных данных предоставляет следующие сервисы:</p>
+<ul class="simple">
+<li><em>чтение</em> данных по имени</li>
+<li><em>публикация/подписка</em> (<em>publish/subscribe</em>) на именованные данные.</li>
+<li><em>публикация с выходом на уровень ввода/вывода</em></li>
+</ul>
+<p>Принцип работы сервиса публикации/подписки аналогичен изложенному в части
+<a class="reference internal" href="#id4">Информационная шина данных ИМС</a></p>
+<p>Сервис публикация с выходом на уровень ввода/вывода описан ниже в разделе <em>ПЕРЕДАЧА</em>.</p>
+</li>
+<li><p class="first">Уровень ПО отвечающий за реализацию протоколов связи осуществляет связывание
+пакетного уровня с пространством имён прикладных данных.</p>
+<div class="figure align-center">
+<img alt="pics/_kdat.png" src="pics/_kdat.png" />
+<p class="caption"><strong>Рис.4.</strong> Связывание пакетного уровня с уровнем прикладных данных</p>
+</div>
+<p>На Рис.4 схематически изображен процесс связывание уровня прикладных данных
+с пакетным уровнем.</p>
+<p>Рассмотрим этот процесс подробнее:</p>
+<p><strong>ПРИЕМ</strong></p>
+<blockquote>
+<ol class="arabic">
+<li><p class="first">от внешней системы по потоку <em>ПОТОК</em> поступает пакет информации <em>pkt</em>.</p>
+</li>
+<li><p class="first">по настройкам ИМС эта информация преобразуется в</p>
+<ul class="simple">
+<li><em>ДОМЕН</em>      -- имя сопрягаемой системы</li>
+<li><em>pkt_2dict</em>  -- алгоритм протокола приёма</li>
+</ul>
+</li>
+<li><p class="first">принятый пакет информации обрабатывается алгоритмом протокола приёма.
+В результате получается набор именованных данных <em>v</em> вида:</p>
+<pre class="literal-block">
+v = {'имя1': значение1, 'имя2': значение2, ...}
+</pre>
+</li>
+<li><p class="first"><em>ДОМЕН</em> пополняется полученными именованными данными,
+происходит уведомление всех подписчиков домена.</p>
+</li>
+</ol>
+<p>пример (приём данных от GPS):</p>
+<pre class="literal-block">
+/* поступает новый информационный пакет */
+ПОТОК = '//node2/serial/ttyM2:rx'
+pkt   = '$GPRMC,211500.00,A,5800.00,N,2200.000,E,11.2,275.1,,,\n\r'
+
+/* ИМС определяет, что информация поступает от приёмника GPS */
+ДОМЕН = '/GPS1'
+pkt_2dict = /* реализация протокола приёма IEC61162_1 в части предложения RMC */
+
+/* v = pkt_2dict(pkt) */
+v   = {'daytime_utc': 21:15,
+       'lat': 58.0*degree,
+       'lon': 22.0*degree,
+       'sog': 11.2*knot,
+       'cog': 275.1*degree
+      }
+
+/* пополнение пространства именованных данных, уведомление подписчиков */
+kdat_populate(ДОМЕН, v)
+</pre>
+</blockquote>
+<p><strong>ПЕРЕДАЧА</strong></p>
+<blockquote>
+<ol class="arabic simple">
+<li>прикладное ПО инициирует выдачу набора именованных данных <em>v</em> в <em>ДОМЕН</em></li>
+<li>по настройкам ИМС эта информация преобразуется в<ul>
+<li><em>ПОТОК</em>      -- поток для выдачи в сопрягаемую систему</li>
+<li><em>dict_2pkt</em>  -- алгоритм протокола передачи</li>
+</ul>
+</li>
+<li>набор именованных данных <em>v</em> обрабатывается алгоритмом протокола передачи.
+В результате формируется пакет <em>pkt</em> для выдачи в сопрягаемую систему.</li>
+<li>Происходит публикация пакета, что в свою очередь приводит к выдачи на
+соответствующем узле пакета агентом ввода/вывода в сопрягаемую систему.</li>
+</ol>
+<p>пример (выдача целеуказания визиру):</p>
+<pre class="literal-block">
+/* прикладное ПО готовит исходные данные */
+ДОМЕН = '/ВИЗИР'
+v     = {'brng': +30*degree, 'elev': -0.5*degree}
+
+/* работает связка именованные данные -&gt; пакетная передача */
+ПОТОК     = '//node1/serial/ttyM10:tx'
+dict_2pkt = /* реализация протокола связи ИМС -&gt; ВИЗИР */
+
+/* pkt = dict_2pkt(v) */
+pkt   = '$BRVPO, ... ,+030.0,-00.5, ... *9A\n\r'
+
+/* вывод пакета к сопрягаемой системе */
+publish(ПОТОК, pkt)
+</pre>
+</blockquote>
+</li>
+</ol>
+<p>На уровне прикладного ПО предложенная схема позволяет:</p>
+<ul class="simple">
+<li>отделить протокольный уровень от уровня прикладных данных.</li>
+<li>унифицировать работу с прикладными данными.</li>
+<li>унифицировать приём и обработку прикладных данных от сопрягаемых систем.</li>
+<li>унифицировать выдачу прикладных данных и команд сопрягаемым системам.</li>
+<li>в штатном режиме осуществлять мониторинг и отладку поступающих и исходящих
+данных.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id8">
+<h1>4&nbsp;&nbsp;&nbsp;Заключение</h1>
+<p>В статье представлен краткий обзор Интегрированной Мостиковой Системы
+разработки ЗАО &quot;Морские Навигационные Системы&quot;.</p>
+<p>Рассмотрены вопросы организации и унификации ввода/вывода в многомашинном
+комплексе, а также вопросы организации и унификации работы с данными на
+прикладном уровне.</p>
+<p>Предложенные подходы позволяют</p>
+<ul class="simple">
+<li>Выделить в задаче сопряжения уровни: транспортный, протокольный и уровень
+именованных данных.</li>
+<li>Унифицировать ввод/вывод и работу с прикладными данными в многомашинном
+комплексе.</li>
+<li>Производить мониторинг, отладку и протоколирование как на уровне
+ввода/вывода, так и на уровне обмена прикладными данными.</li>
+</ul>
+<p>Разработанная архитектура и ПО шины данных ИМС обеспечивают возможность
+сопряжения с локальными шинами данных других систем, или с общекорабельной
+системой обмена данными (ОКСОД).</p>
+<hr class="docutils" />
+<p>ЗАО &quot;Морские Навигационные Системы&quot; в ходе разработки ИМС приобретён большой
+опыт в части комплексирования аппаратных средств, сопряжения с корабельными
+системами, разработки архитектуры и ПО информационной шины данных, разработки
+ПО АРМ.</p>
+<p>Описанные принципы построения ИМС обеспечивают гибкость при построении системы,
+а также возможность ее масштабирования с расширением количества функций и
+добавлением новых АРМ.</p>
+<p>Приобретённый при создании ИМС опыт, позволяет разрабатывать и другие
+распределённые корабельные системы.</p>
+<p>Рассмотренная в статье схема построения ИМС внедрена на действующих кораблях.</p>
+</div>
+<div class="section" id="id9">
+<h1>5&nbsp;&nbsp;&nbsp;Литература</h1>
+<!-- .. [#1553rus] \ -->
+<!-- Интерфейс последовательный однопроводный цифровых информационных -->
+<!-- управляющих систем ГОСТ 26765.52-87 -->
+<table class="docutils footnote" frame="void" id="regexp" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[1]</a></td><td>Фридл Дж. Регулярные выражения. Библиотека программиста. --- СПб.: Питер,
+2001. 352 с. ISBN 5-318-00056-8.</td></tr>
+</tbody>
+</table>
+<!-- это скорее всего не нужно -->
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>Денисов В.И. Малый артиллерийский корабль нового поколения //
+Морская радиоэлектроника 2005. - Вып. 4(14)</td></tr>
+</tbody>
+</table>
+<!-- это скорее всего не нужно -->
+<table class="docutils footnote" frame="void" id="bus-aurora" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td>Королев Е.В. Повышение эффективности использования магистралей ГОСТ
+26765.52-87 (MIL-STD-1553B), RS485, CAN в корабельных системах управления. //
+Морской Вестник 2006. - Вып. 4(20)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
